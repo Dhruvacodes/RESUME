@@ -59,16 +59,7 @@ export default function MarketsWorld() {
             <br />
             Market
             <br />
-            <span
-              style={{
-                background: "linear-gradient(120deg, #CFCFCF, #8F8F8F)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Dynamics
-            </span>
+            <span style={{ color: "#B5B5B5" }}>Dynamics</span>
           </h1>
           <div className="mt-8 w-24 h-[1px] bg-emerald-500/30" />
           <p className="mt-4 text-lg text-zinc-400 max-w-lg leading-relaxed">
