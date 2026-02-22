@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import AnimatedCounter from "./AnimatedCounter";
 import { WorldName } from "@/lib/store";
 
 interface CoreWorldProps {
@@ -22,39 +21,59 @@ export default function CoreWorld({ navigateToWorld }: CoreWorldProps) {
         transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
       >
         <p className="font-mono-label text-zinc-400 mb-8">Dual Axis</p>
-        <h1 className="font-serif-display text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight mb-8">
-          Building Systems
-          <br />
-          That Survive
-          <br />
-          <span className="italic">Reality</span>
+        <h1 className="font-serif-display text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight mb-6">
+          Dhruv Agrawal
         </h1>
+        <p className="font-mono-label text-zinc-500 mb-8 text-[0.65rem]">
+          Technology × Finance
+        </p>
         <div className="w-16 h-[1px] bg-zinc-300 mx-auto mb-8" />
-        <p className="text-zinc-500 text-lg max-w-md mx-auto leading-relaxed">
-          Engineering at the intersection of distributed systems and
-          quantitative markets.
+        <p className="text-zinc-500 text-lg max-w-xl mx-auto leading-relaxed mb-8">
+          Exploring complex systems across capital markets, distributed
+          architectures, and large-scale simulation.
+        </p>
+        <p className="text-zinc-400 text-sm max-w-lg mx-auto leading-relaxed">
+          Computer and Communication Engineering student at Manipal Institute of
+          Technology with strong foundations in statistical learning, systems
+          thinking, and quantitative modeling. Interested in applying analytical
+          rigor to high-impact strategic and business challenges.
         </p>
       </motion.div>
 
-      {/* Metrics */}
+      {/* Highlight Blocks */}
       <motion.div
-        className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12"
+        className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl w-full"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
         {[
-          { value: 8, suffix: "+", label: "Years Experience" },
-          { value: 47, suffix: "", label: "Projects Shipped" },
-          { value: 99.9, suffix: "%", label: "Uptime Achieved" },
-          { value: 12, suffix: "", label: "Research Papers" },
-        ].map((stat, i) => (
-          <div key={i} className="text-center">
-            <div className="font-serif-display text-3xl md:text-4xl text-zinc-800">
-              <AnimatedCounter end={stat.value} suffix={stat.suffix} />
-            </div>
-            <p className="font-mono-label text-zinc-400 mt-2 text-[0.55rem]">
-              {stat.label}
+          {
+            title: "IISc Podium Recognition",
+            desc: "FX Statistical Arbitrage Research",
+          },
+          {
+            title: "14-Year HF Market Dataset",
+            desc: "5-second frequency, multi-currency",
+          },
+          {
+            title: "World Robotics Championship",
+            desc: "Represented RoboManipal at international level",
+          },
+          {
+            title: "50+ Members Trained",
+            desc: "ML & Edge AI workshops and mentorship",
+          },
+        ].map((item, i) => (
+          <div
+            key={i}
+            className="border border-zinc-200 p-5 text-left"
+          >
+            <h3 className="text-sm font-semibold text-zinc-800 mb-1">
+              {item.title}
+            </h3>
+            <p className="text-xs text-zinc-500 leading-relaxed">
+              {item.desc}
             </p>
           </div>
         ))}
@@ -100,7 +119,26 @@ export default function CoreWorld({ navigateToWorld }: CoreWorldProps) {
         </button>
       </motion.div>
 
-      {/* Subtle navigation links */}
+      {/* Contact Info */}
+      <motion.div
+        className="mt-12 flex flex-wrap justify-center gap-6 text-[0.6rem] font-mono-label text-zinc-400"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.6 }}
+        transition={{ duration: 0.6, delay: 1.4 }}
+      >
+        <a href="mailto:dhruvagrawal479@gmail.com" className="hover:text-zinc-700 transition-colors">
+          dhruvagrawal479@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/dhruva02" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-700 transition-colors">
+          LinkedIn
+        </a>
+        <a href="https://github.com/Dhruvacodes" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-700 transition-colors">
+          GitHub
+        </a>
+        <span>Bengaluru, India</span>
+      </motion.div>
+
+      {/* Navigation links */}
       <motion.div
         className="absolute bottom-8 flex gap-8"
         initial={{ opacity: 0 }}

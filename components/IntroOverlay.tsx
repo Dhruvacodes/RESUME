@@ -36,7 +36,7 @@ export default function IntroOverlay() {
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            Dual Axis
+            Dhruv Agrawal
           </motion.h1>
           <motion.p
             className="font-mono-label text-zinc-500 mt-6 text-center"
@@ -44,7 +44,7 @@ export default function IntroOverlay() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
-            Systems ↔ Markets
+            Technology × Finance
           </motion.p>
           <motion.div
             className="absolute bottom-12 left-1/2 -translate-x-1/2"

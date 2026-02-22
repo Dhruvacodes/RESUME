@@ -25,7 +25,7 @@ export default function Home() {
     return () => window.removeEventListener("resize", checkMobile);
   }, [setIsMobile]);
 
-  // Unlock body overflow for mobile
+  // Manage overflow based on state
   useEffect(() => {
     if (isMobile && introCompleted) {
       document.documentElement.style.overflow = "auto";
@@ -33,7 +33,16 @@ export default function Home() {
     } else if (!introCompleted) {
       document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
+    } else {
+      // Desktop with intro completed: axis handles its own scrolling
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
     }
+
+    return () => {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    };
   }, [isMobile, introCompleted]);
 
   return (

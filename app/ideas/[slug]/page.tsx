@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const idea = getIdeaBySlug(params.slug);
   if (!idea) return { title: "Not Found" };
   return {
-    title: `${idea.frontmatter.title} — Dual Axis Ideas`,
+    title: `${idea.frontmatter.title} — Dhruv Agrawal`,
     description: idea.frontmatter.description,
   };
 }
@@ -39,7 +39,7 @@ export default function IdeaPage({ params }: Props) {
             href="/"
             className="font-mono-label text-zinc-400 text-[0.6rem] hover:text-zinc-700 transition-colors duration-300 mb-8 inline-block"
           >
-            ← Back to Dual Axis
+            ← Back to Portfolio
           </a>
           <p className="font-mono-label text-zinc-400 text-[0.55rem] mb-4">
             {new Date(idea.frontmatter.date).toLocaleDateString("en-US", {

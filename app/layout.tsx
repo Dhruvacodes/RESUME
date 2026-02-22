@@ -11,16 +11,16 @@ export const metadata: Metadata = {
     template: "%s | Dhruv Agrawal",
   },
   description:
-    "Systems Engineer & Quantitative Researcher. Building at the intersection of distributed systems, AI, and financial markets.",
+    "Technology & Finance Enthusiast. Exploring complex systems across capital markets, distributed architectures, and large-scale simulation.",
   keywords: [
     "Dhruv Agrawal",
-    "systems engineer",
-    "quantitative researcher",
+    "technology",
+    "finance",
+    "quantitative modeling",
     "distributed systems",
     "AI research",
-    "quantitative finance",
-    "portfolio",
-    "full-stack engineer",
+    "statistical learning",
+    "consulting",
   ],
   authors: [{ name: "Dhruv Agrawal", url: siteUrl }],
   creator: "Dhruv Agrawal",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: "Dhruv Agrawal",
     title: "Dhruv Agrawal — Systems ↔ Markets",
     description:
-      "Systems Engineer & Quantitative Researcher. Building at the intersection of distributed systems, AI, and financial markets.",
+      "Technology & Finance Enthusiast. Exploring complex systems across capital markets, distributed architectures, and large-scale simulation.",
     images: [
       {
         url: "/og-image.png",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dhruv Agrawal — Systems ↔ Markets",
     description:
-      "Systems Engineer & Quantitative Researcher. Building at the intersection of distributed systems, AI, and financial markets.",
+      "Technology & Finance Enthusiast. Exploring complex systems across capital markets, distributed architectures, and large-scale simulation.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -85,7 +85,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased overflow-hidden">
+      <body className="antialiased">
         {children}
         <Analytics />
       </body>
