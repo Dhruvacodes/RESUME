@@ -64,18 +64,18 @@ function ExpandablePanel({
 export default function CoreWorld({ navigateToWorld }: CoreWorldProps) {
   return (
     <div
-      className="relative min-h-screen flex flex-col items-center px-6 py-16"
+      className="relative flex flex-col items-center px-4 sm:px-6 pt-20 pb-12 lg:min-h-screen lg:py-16"
       style={{
         background: "#F5F3EE",
         color: "#18181B",
       }}
     >
       {/* ── Hero ── */}
-      <div className="text-center max-w-3xl mt-6">
+      <div className="text-center max-w-3xl mt-4 lg:mt-6">
         {/* Name */}
         <motion.h1
           style={{
-            fontSize: "clamp(3rem, 7vw, 6rem)",
+            fontSize: "clamp(2.5rem, 7vw, 6rem)",
             fontFamily: "'Inter', system-ui, sans-serif",
             fontWeight: 600,
             letterSpacing: "-0.03em",
@@ -130,7 +130,7 @@ export default function CoreWorld({ navigateToWorld }: CoreWorldProps) {
       </div>
 
       {/* ── Expandable Panels ── */}
-      <div className="mt-12 w-full max-w-2xl space-y-3">
+      <div className="mt-10 lg:mt-12 w-full max-w-2xl space-y-3 px-2 sm:px-0">
         <ExpandablePanel title="Education" delay={0.6}>
           <div className="space-y-3">
             <div>
@@ -206,36 +206,36 @@ export default function CoreWorld({ navigateToWorld }: CoreWorldProps) {
 
       {/* ── Directional Nav ── */}
       <motion.div
-        className="mt-14 flex items-center gap-16 md:gap-32"
+        className="mt-10 lg:mt-14 flex flex-col sm:flex-row items-center gap-4 sm:gap-16 md:gap-32 w-full sm:w-auto max-w-xs sm:max-w-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
       >
         <button
           onClick={() => navigateToWorld("systems")}
-          className="group flex items-center gap-3 text-zinc-400 hover:text-zinc-700 transition-colors duration-500"
+          className="group flex items-center justify-center gap-3 text-zinc-400 hover:text-zinc-700 transition-colors duration-500 w-full sm:w-auto py-3 sm:py-0 border border-zinc-200 sm:border-0 rounded"
         >
           <motion.span
-            className="text-lg"
+            className="text-lg hidden sm:inline"
             animate={{ x: [0, -4, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
             ←
           </motion.span>
-          <span className="font-mono-label text-[0.65rem] group-hover:tracking-[0.4em] transition-all duration-500">
+          <span className="font-mono-label text-[0.65rem] sm:group-hover:tracking-[0.4em] transition-all duration-500">
             Systems
           </span>
         </button>
-        <div className="w-[1px] h-8 bg-zinc-300" />
+        <div className="hidden sm:block w-[1px] h-8 bg-zinc-300" />
         <button
           onClick={() => navigateToWorld("markets")}
-          className="group flex items-center gap-3 text-zinc-400 hover:text-zinc-700 transition-colors duration-500"
+          className="group flex items-center justify-center gap-3 text-zinc-400 hover:text-zinc-700 transition-colors duration-500 w-full sm:w-auto py-3 sm:py-0 border border-zinc-200 sm:border-0 rounded"
         >
-          <span className="font-mono-label text-[0.65rem] group-hover:tracking-[0.4em] transition-all duration-500">
+          <span className="font-mono-label text-[0.65rem] sm:group-hover:tracking-[0.4em] transition-all duration-500">
             Markets
           </span>
           <motion.span
-            className="text-lg"
+            className="text-lg hidden sm:inline"
             animate={{ x: [0, 4, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >

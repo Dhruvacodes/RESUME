@@ -127,7 +127,11 @@ export default function AxisContainer() {
   // Navigate to a specific world
   const navigateToWorld = useCallback(
     (world: "systems" | "core" | "markets") => {
-      if (isMobile) return;
+      if (isMobile) {
+        const el = document.getElementById(`${world}-section`);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
       const targets = { systems: 0, core: -100, markets: -200 };
       targetX.current = targets[world];
     },
@@ -137,10 +141,16 @@ export default function AxisContainer() {
   // If mobile, render stacked
   if (isMobile) {
     return (
-      <div className="w-screen">
-        <SystemsWorld />
-        <CoreWorld navigateToWorld={navigateToWorld} />
-        <MarketsWorld />
+      <div className="w-full overflow-x-hidden">
+        <div id="core-section">
+          <CoreWorld navigateToWorld={navigateToWorld} />
+        </div>
+        <div id="systems-section">
+          <SystemsWorld />
+        </div>
+        <div id="markets-section">
+          <MarketsWorld />
+        </div>
       </div>
     );
   }

@@ -45,7 +45,7 @@ export default function MarketsWorld() {
       <GlowBackground />
 
       {/* Hero */}
-      <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-24">
+      <section className="relative flex flex-col pt-20 pb-12 lg:pt-0 lg:pb-0 lg:min-h-screen lg:justify-center px-6 md:px-16 lg:px-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -54,7 +54,7 @@ export default function MarketsWorld() {
           <p className="font-mono-label text-emerald-500/60 mb-6">
             Quantitative Finance
           </p>
-          <h1 className="font-serif-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] tracking-tight text-white">
+          <h1 className="font-serif-display text-4xl md:text-7xl lg:text-[5.5rem] leading-[1.05] tracking-tight text-white">
             Decoding
             <br />
             Market

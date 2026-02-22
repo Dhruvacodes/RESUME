@@ -23,11 +23,14 @@
 
 html {
   scroll-behavior: auto;
+  overflow-x: hidden;
 }
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
   overscroll-behavior: none;
+  overflow-x: hidden;
+  max-width: 100vw;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -165,17 +168,28 @@ body {
   width: 100%;
 }
 
-/* Mobile stacked layout */
-@media (max-width: 768px) {
+/* ─── Mobile: vertical stacking (≤ 1024px) ─── */
+@media (max-width: 1024px) {
   .axis-horizontal {
     flex-direction: column !important;
-    width: 100vw !important;
+    width: 100% !important;
     transform: none !important;
   }
   .axis-horizontal > div {
-    width: 100vw !important;
-    min-height: 100vh;
+    width: 100% !important;
+    min-height: auto !important;
     height: auto !important;
+  }
+  .noise-overlay {
+    display: none !important;
+  }
+}
+
+/* ─── Mobile: typography & spacing (≤ 768px) ─── */
+@media (max-width: 768px) {
+  .font-mono-label {
+    letter-spacing: 0.15em;
+    font-size: 0.6rem;
   }
 }
 

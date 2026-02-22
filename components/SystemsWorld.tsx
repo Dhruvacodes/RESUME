@@ -60,15 +60,15 @@ export default function SystemsWorld() {
       <div className="noise-overlay" />
 
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-24">
+      <section className="relative flex flex-col pt-20 pb-12 lg:pt-0 lg:pb-0 lg:min-h-screen lg:justify-center px-6 md:px-16 lg:px-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="font-mono-label text-zinc-500 mb-6">Systems</p>
+          <p className="font-mono-label text-zinc-500 mb-4 lg:mb-6">Systems</p>
           <h1
-            className="font-serif-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] tracking-tight"
+            className="font-serif-display text-4xl md:text-7xl lg:text-[5.5rem] leading-[1.05] tracking-tight"
             style={{ color: "#000000" }}
           >
             Systems Architecture
@@ -84,7 +84,7 @@ export default function SystemsWorld() {
 
         {/* Hero Cards */}
         <motion.div
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl"
+          className="mt-12 lg:mt-16 grid grid-cols-1 md:grid-cols-3 gap-5 max-w-4xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -117,7 +117,7 @@ export default function SystemsWorld() {
           ))}
         </motion.div>
 
-        <div className="absolute bottom-8 left-6 md:left-16">
+        <div className="hidden lg:block absolute bottom-8 left-6 md:left-16">
           <p className="font-mono-label text-zinc-400 text-[0.6rem]">
             Scroll to explore
           </p>
