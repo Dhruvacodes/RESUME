@@ -73,84 +73,36 @@ export default function MarketsWorld() {
 
       <TickerRibbon />
 
-      {/* Section 01: Hybrid Risk Modeling */}
+      {/* ═══ FX Statistical Arbitrage ═══ */}
       <Section>
         <p className="font-mono-label text-emerald-500/60 mb-4">
-          01 — Risk Modeling & Early Warning
+          Statistical Arbitrage
         </p>
-        <h2 className="font-serif-display text-3xl md:text-5xl text-white mb-8">
-          Hybrid Crash Forecasting
+        <h2 className="font-serif-display text-3xl md:text-5xl text-white mb-4">
+          Cross-Currency FX Strategy
         </h2>
-        <div className="glass-card shimmer-border p-8 max-w-3xl mb-8">
-          <p className="text-zinc-400 leading-relaxed mb-6">
-            Developed a multi-signal risk modeling system for cryptocurrency
-            markets. The approach combines volatility regime detection, bubble
-            diagnostics, sentiment-derived features, and sequence-based deep
-            learning to generate early warning signals for crash events.
-            Validated using temporally-consistent evaluation protocols.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-6">
-            {[
-              { label: "Domain", value: "Cryptocurrency" },
-              { label: "Approach", value: "Multi-Signal Hybrid" },
-              { label: "Validation", value: "Rolling-Window CV" },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <p className="text-white font-semibold text-sm">{stat.value}</p>
-                <p className="font-mono-label text-[0.5rem] text-zinc-500 mt-1">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-          <p className="text-zinc-500 text-xs leading-relaxed italic">
-            Focus: building a framework that identifies structural fragility in
-            price dynamics rather than fitting to historical crash patterns.
-          </p>
-        </div>
-        <div className="flex gap-2 flex-wrap">
-          {[
-            "Volatility Modeling",
-            "Bubble Diagnostics",
-            "Sentiment Signals",
-            "Deep Learning",
-            "Temporal Validation",
-          ].map((tag) => (
-            <span
-              key={tag}
-              className="border border-zinc-700 px-3 py-1 text-xs text-zinc-400"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      </Section>
+        <p className="text-emerald-500/60 font-mono-label text-[0.6rem] mb-8">
+          IISc Podium Recognition
+        </p>
 
-      {/* Section 02: HF Dataset Research */}
-      <Section>
-        <p className="font-mono-label text-emerald-500/60 mb-4">
-          02 — High-Frequency FX Research
-        </p>
-        <h2 className="font-serif-display text-3xl md:text-5xl text-white mb-8">
-          Large-Scale FX Dataset Analysis
-        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="glass-card shimmer-border p-8">
             <h3 className="text-lg font-semibold text-white mb-4">
-              Dataset Scope
+              Dataset &amp; Scope
             </h3>
             <p className="text-zinc-400 text-sm leading-relaxed mb-4">
-              Worked with a 14-year, multi-currency FX dataset sampled at
-              5-second frequency. Research focused on understanding
-              microstructure patterns, factor exposures, and the statistical
-              properties of returns at high temporal resolution.
+              Built and validated a market-neutral statistical arbitrage strategy
+              on a 14-year, multi-currency FX dataset sampled at 5-second
+              frequency. The approach isolates residual mispricings after
+              removing dominant USD exposure, then applies systematic
+              mean-reversion rules across currency pairs.
             </p>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { label: "Time Span", value: "14 Years" },
-                { label: "Frequency", value: "5-Second" },
-                { label: "Asset Class", value: "FX Pairs" },
-                { label: "Focus", value: "Microstructure" },
+                { label: "Gross Sharpe", value: "3.81" },
+                { label: "Net Sharpe (1bp)", value: "1.99" },
+                { label: "Max Drawdown", value: "−13.6%" },
+                { label: "Profitable", value: "12/14 Years" },
               ].map((m, i) => (
                 <div key={i}>
                   <p className="font-mono-label text-[0.5rem] text-zinc-500 mb-1">
@@ -163,64 +115,145 @@ export default function MarketsWorld() {
           </div>
           <div className="glass-card shimmer-border p-8">
             <h3 className="text-lg font-semibold text-white mb-4">
-              Research Methodology
+              Methodology
             </h3>
-            <p className="text-zinc-400 text-sm leading-relaxed">
-              Analysis followed a strict walk-forward protocol — no look-ahead
-              bias, no in-sample optimisation leaked into evaluation. Factor
-              exposures were decomposed to understand systematic vs. idiosyncratic
-              return components. Every finding was stress-tested against
-              transaction cost assumptions and regime shifts.
+            <p className="text-zinc-400 text-sm leading-relaxed mb-4">
+              All evaluation followed strict walk-forward, out-of-sample
+              protocols — no look-ahead bias, no in-sample optimisation leaked
+              into results. Factor exposures were decomposed to understand
+              systematic vs. idiosyncratic return components. Every finding
+              stress-tested against transaction cost assumptions, regime shifts,
+              and liquidity constraints.
+            </p>
+            <p className="text-zinc-500 text-xs leading-relaxed italic">
+              Max drawdown −13.6%, profitable in 12 of 14 years. Validated
+              via walk-forward backtesting with transaction cost sensitivity
+              across multiple cost regimes.
             </p>
           </div>
-        </div>
-      </Section>
-
-      {/* Section 03: Statistical Arbitrage Research */}
-      <Section>
-        <p className="font-mono-label text-emerald-500/60 mb-4">
-          03 — Statistical Arbitrage
-        </p>
-        <h2 className="font-serif-display text-3xl md:text-5xl text-white mb-4">
-          Cross-Currency Factor Strategy
-        </h2>
-        <p className="text-emerald-500/60 font-mono-label text-[0.6rem] mb-8">
-          IISc Podium Recognition
-        </p>
-        <div className="glass-card shimmer-border p-8 max-w-3xl mb-8">
-          <p className="text-zinc-400 leading-relaxed mb-6">
-            Constructed and validated a market-neutral strategy for the FX
-            market. The approach isolates residual signals after removing
-            dominant factor exposures, then applies systematic rules to trade
-            across currency pairs. All results validated on out-of-sample data
-            using walk-forward protocols.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-6">
-            {[
-              { label: "Construction", value: "Market-Neutral" },
-              { label: "Validation", value: "Walk-Forward OOS" },
-              { label: "Recognition", value: "IISc Podium" },
-            ].map((m, i) => (
-              <div key={i} className="text-center">
-                <p className="text-white font-semibold text-sm">{m.value}</p>
-                <p className="font-mono-label text-[0.5rem] text-zinc-500 mt-1">
-                  {m.label}
-                </p>
-              </div>
-            ))}
-          </div>
-          <p className="text-zinc-500 text-xs leading-relaxed italic">
-            Emphasis on understanding why the strategy works structurally — not
-            just that it produces favourable backtested numbers. Detailed
-            methodology available upon request.
-          </p>
         </div>
         <div className="flex gap-2 flex-wrap">
           {[
             "Factor Decomposition",
             "Market-Neutral",
-            "Walk-Forward Validation",
+            "Walk-Forward OOS",
+            "Microstructure Analysis",
             "Risk Management",
+          ].map((tag) => (
+            <span
+              key={tag}
+              className="border border-zinc-700 px-3 py-1 text-xs text-zinc-400"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </Section>
+
+      {/* ═══ Hybrid Risk Forecasting ═══ */}
+      <Section>
+        <p className="font-mono-label text-emerald-500/60 mb-4">
+          Risk Modeling &amp; Early Warning
+        </p>
+        <h2 className="font-serif-display text-3xl md:text-5xl text-white mb-8">
+          Hybrid Crash Forecasting
+        </h2>
+        <div className="glass-card shimmer-border p-8 max-w-3xl mb-8">
+          <p className="text-zinc-400 leading-relaxed mb-6">
+            Developed a multi-signal crash forecasting system for Bitcoin,
+            fusing EGARCH-based volatility regime detection, LPPL bubble
+            diagnostics, sentiment-derived features, and LSTM sequence modeling
+            into a unified early-warning framework. The system generates
+            probabilistic crash alerts with a 26-day average lead time,
+            validated through rolling-window cross-validation with strict
+            temporal separation.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+            {[
+              { label: "ROC AUC", value: "0.97" },
+              { label: "Precision", value: "89%" },
+              { label: "Lead Time", value: "26 Days" },
+              { label: "Validation", value: "Rolling-Window CV" },
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <p className="text-white font-semibold text-sm">{stat.value}</p>
+                <p className="font-mono-label text-[0.5rem] text-zinc-500 mt-1">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="text-zinc-500 text-xs leading-relaxed italic">
+            Focus: identifying structural fragility in price dynamics rather
+            than fitting to historical crash patterns. Each signal component
+            captures a distinct market regime dimension — volatility clustering,
+            speculative acceleration, crowd sentiment, and sequential
+            dependencies.
+          </p>
+        </div>
+        <div className="flex gap-2 flex-wrap">
+          {[
+            "EGARCH",
+            "LPPL Bubble Diagnostics",
+            "LSTM",
+            "Sentiment Signals",
+            "Temporal Validation",
+          ].map((tag) => (
+            <span
+              key={tag}
+              className="border border-zinc-700 px-3 py-1 text-xs text-zinc-400"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </Section>
+
+      {/* ═══ Cross-Asset Portfolio Optimization ═══ */}
+      <Section>
+        <p className="font-mono-label text-emerald-500/60 mb-4">
+          Portfolio Construction
+        </p>
+        <h2 className="font-serif-display text-3xl md:text-5xl text-white mb-8">
+          Cross-Asset Portfolio Optimization
+        </h2>
+        <div className="glass-card shimmer-border p-8 max-w-3xl mb-8">
+          <p className="text-zinc-400 leading-relaxed mb-6">
+            Built a regime-aware, cross-asset allocation framework combining
+            Hierarchical Risk Parity with dynamic regime-switching filters.
+            The system rebalances allocations based on detected market regimes
+            — risk-on, risk-off, and transitional — validated through strict
+            walk-forward protocols on multi-year data spanning equities, fixed
+            income, and commodities.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+            {[
+              { label: "Return", value: "148% vs 97.5%" },
+              { label: "Sharpe", value: "0.41 → 0.68" },
+              { label: "Method", value: "HRP + Regime Switch" },
+              { label: "Validation", value: "Walk-Forward OOS" },
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <p className="text-white font-semibold text-sm">{stat.value}</p>
+                <p className="font-mono-label text-[0.5rem] text-zinc-500 mt-1">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="text-zinc-500 text-xs leading-relaxed italic">
+            Designed for robustness over headline returns — emphasis on
+            drawdown control, regime resilience, and avoiding over-fit to
+            benign market conditions.
+          </p>
+        </div>
+        <div className="flex gap-2 flex-wrap">
+          {[
+            "Hierarchical Risk Parity",
+            "Regime Switching",
+            "Cross-Asset Allocation",
+            "Walk-Forward Validation",
+            "Drawdown Control",
           ].map((tag) => (
             <span
               key={tag}
@@ -235,7 +268,7 @@ export default function MarketsWorld() {
       {/* Contact */}
       <Section className="pb-32">
         <p className="font-mono-label text-emerald-500/60 mb-4">
-          04 — Contact
+          Contact
         </p>
         <h2 className="font-serif-display text-3xl md:text-5xl text-white mb-8">
           Connect

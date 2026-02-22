@@ -62,7 +62,7 @@ export default function ResumePage() {
             {
               institution: "Manipal Institute of Technology, Manipal",
               degree: "B.Tech — Computer and Communication Engineering",
-              period: "2023 – Present",
+              period: "2024 – 2028 (Expected)",
               detail: null,
             },
             {
@@ -104,32 +104,33 @@ export default function ResumePage() {
             {
               role: "AI Researcher",
               company: "Team RoboManipal",
-              period: "2024 – Present",
+              period: "02/2025 – Present",
               points: [
-                "Developed end-to-end AI perception and decision system for autonomous robotics",
-                "Designed deterministic firmware migration framework for cross-architecture porting",
-                "Trained 50+ team members in ML and Edge AI workflows",
-                "Represented team at the World Robotics Championship",
+                "Developed full AI perception stack for agricultural robot — instance segmentation, active viewpoint optimisation, 3D spatial tracking via camera-LiDAR fusion, and plant-level risk prediction",
+                "Designed deterministic firmware migration framework with semantic hardware abstraction and simulation-based validation",
+                "Trained 50+ team members in ML fundamentals, computer vision, and edge deployment workflows",
+                "Represented India at the World Robotics Championship 2024",
               ],
             },
             {
-              role: "Quantitative Research",
+              role: "Core Team Member",
               company: "Finova — Finance Club, MIT Manipal",
-              period: "2024 – Present",
+              period: "01/2024 – Present",
               points: [
-                "Conducted independent research across statistical arbitrage, risk modeling, and portfolio construction",
-                "Received IISc podium recognition for FX arbitrage research",
-                "Developed multi-signal crash forecasting model for cryptocurrency markets",
-                "Built cross-asset allocation framework with regime-aware methodology",
+                "Led research task phase covering statistical arbitrage, risk modeling, and portfolio construction",
+                "Conducted and presented FX statistical arbitrage research — IISc podium recognition",
+                "Organised fintech workshop (100+ registrations) bridging quantitative methods and applied finance",
+                "Built multi-signal crash forecasting model and regime-aware portfolio optimisation framework",
               ],
             },
             {
-              role: "Member",
+              role: "Executive",
               company: "E-Cell, MIT Manipal",
-              period: "2023 – Present",
+              period: "09/2025 – Present",
               points: [
-                "Contributed to entrepreneurship-focused initiatives and events",
-                "Engaged with startup ecosystem and innovation-driven projects",
+                "Core organising team for Manipal Entrepreneurship Summit (MES) 2026 — 30,000+ attendees, coordinating 150+ startups and 1,300+ competition registrations",
+                "Collaborated with 12 E-Cells nationwide to draft and present Bharat Yuva Innovation Policy Recommendations",
+                "Supported strategic partnership outreach and ecosystem expansion initiatives",
               ],
             },
           ].map((job, i) => (
@@ -160,27 +161,27 @@ export default function ResumePage() {
           {[
             {
               title: "FX Statistical Arbitrage Research",
-              desc: "Market-neutral cross-currency strategy validated on a 14-year high-frequency dataset. Walk-forward out-of-sample evaluation. IISc podium recognition.",
+              desc: "Market-neutral cross-currency strategy on a 14-year, 5-second frequency FX dataset. Gross Sharpe 3.81, Net Sharpe 1.99 (1 bp), max drawdown −13.6%, profitable in 12/14 years. Walk-forward OOS evaluation. IISc podium recognition.",
             },
             {
               title: "Hybrid Crash Forecasting Model",
-              desc: "Multi-signal risk modeling system for cryptocurrency markets combining volatility analysis, bubble diagnostics, and sequence-based deep learning. Temporally-consistent validation.",
+              desc: "Multi-signal Bitcoin crash prediction fusing EGARCH volatility regimes, LPPL bubble diagnostics, sentiment features, and LSTM sequence modeling. ROC AUC 0.97, 26-day average lead time, 89% precision.",
             },
             {
-              title: "Cross-Asset Portfolio Construction",
-              desc: "Regime-aware allocation framework using hierarchical risk methods and walk-forward optimisation. Focus on robustness over headline returns.",
+              title: "Cross-Asset Portfolio Optimization",
+              desc: "Regime-aware allocation framework combining Hierarchical Risk Parity with regime switching. 148% return vs 97.5% benchmark, Sharpe improved 0.41 → 0.68. Walk-forward validation with regime-conditional decomposition.",
             },
             {
               title: "Post-AGI Digital Economy Simulation",
-              desc: "Agent-based framework modeling autonomous economic agents in tokenised economies. Explored policy interventions for wealth distribution dynamics.",
+              desc: "Agent-based framework modeling autonomous economic agents in tokenised economies with reputation currencies and tokenized attention markets. 34% reduction in wealth concentration under targeted policy mechanisms.",
             },
             {
               title: "AI Perception Pipeline (RoboManipal)",
-              desc: "End-to-end perception system integrating real-time object understanding, spatial awareness, and multi-sensor fusion for autonomous robotics.",
+              desc: "Full perception stack for agricultural robot — instance segmentation, active viewpoint optimisation, camera-LiDAR fusion, 3D spatial tracking, and plant-level risk prediction. World Robotics Championship 2024.",
             },
             {
               title: "Firmware Migration Framework",
-              desc: "Deterministic cross-architecture porting system for embedded microcontrollers, emphasising reproducibility and automated validation.",
+              desc: "Deterministic cross-architecture porting using semantic hardware abstraction layers, automated code translation, and simulation-based validation across MCU families.",
             },
           ].map((proj, i) => (
             <div key={i}>

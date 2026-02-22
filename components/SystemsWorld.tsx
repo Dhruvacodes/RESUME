@@ -222,17 +222,23 @@ export default function SystemsWorld() {
           </h3>
           <p className="text-sm text-zinc-400 leading-relaxed mb-6">
             Designed a reproducible framework for cross-architecture firmware
-            migration, reducing manual intervention while preserving correctness
-            across microcontroller platforms.
+            migration using semantic hardware abstraction layers that decouple
+            application logic from platform-specific peripherals. The system
+            automates code translation across microcontroller families,
+            validates correctness through simulation-based testing, and
+            produces deterministic builds with full traceability from source
+            to binary.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
             {[
-              "Hardware abstraction layers",
-              "Cross-toolchain compilation",
+              "Semantic hardware abstraction layers",
+              "Automated code translation across MCU families",
+              "Simulation-based validation pipeline",
               "Register mapping & peripheral translation",
               "Architecture-agnostic interface design",
               "Deterministic build reproducibility",
-              "Hardware-in-the-loop validation",
+              "Cross-toolchain compilation",
+              "Hardware-in-the-loop verification",
             ].map((skill) => (
               <p
                 key={skill}
@@ -248,10 +254,10 @@ export default function SystemsWorld() {
           items={[
             "C/C++",
             "Microcontrollers",
-            "HAL",
+            "Semantic HAL",
             "Build Systems",
+            "Simulation Testing",
             "Toolchain Integration",
-            "Debugging",
           ]}
         />
       </Section>
@@ -264,16 +270,20 @@ export default function SystemsWorld() {
 
         <div className="systems-metallic-card p-8 max-w-3xl mb-8">
           <p className="font-mono-label text-zinc-600 text-[0.55rem] mb-3">
-            Team RoboManipal — AI Research
+            Team RoboManipal — AI Research · World Robotics Championship 2024
           </p>
           <h3 className="text-base font-semibold text-zinc-200 mb-3">
-            AI Perception &amp; Decision Pipeline
+            AI Perception for Agricultural Robotics
           </h3>
           <p className="text-sm text-zinc-400 leading-relaxed mb-6">
-            Developed an end-to-end perception and decision framework integrating
-            real-time object understanding, spatial reasoning, and multi-sensor
-            inputs deployed on edge hardware. Validated in international
-            competition environments.
+            Developed the full AI perception stack for an autonomous agricultural
+            robot — instance segmentation for individual plant identification,
+            active viewpoint optimisation for multi-angle canopy observation,
+            3D spatial tracking using fused camera and LiDAR data, and
+            plant-level risk prediction for targeted intervention. The system
+            runs real-time inference on edge hardware and was validated in
+            international competition environments at the World Robotics
+            Championship 2024.
           </p>
 
           {/* Three-column skill groups */}
@@ -284,9 +294,10 @@ export default function SystemsWorld() {
               </p>
               <ul className="space-y-1">
                 {[
-                  "Real-time object detection",
-                  "Sensor fusion",
-                  "Spatial coordinate transforms",
+                  "Instance segmentation",
+                  "Active viewpoint optimisation",
+                  "Camera + LiDAR fusion",
+                  "3D spatial tracking",
                   "Edge inference optimisation",
                 ].map((s) => (
                   <li key={s} className="text-xs text-zinc-500 leading-relaxed">
@@ -301,9 +312,10 @@ export default function SystemsWorld() {
               </p>
               <ul className="space-y-1">
                 {[
+                  "Plant-level risk prediction",
+                  "Targeted intervention planning",
                   "Constraint-aware path planning",
                   "Feedback-based control loops",
-                  "Task-state modeling",
                 ].map((s) => (
                   <li key={s} className="text-xs text-zinc-500 leading-relaxed">
                     {s}
@@ -313,13 +325,14 @@ export default function SystemsWorld() {
             </div>
             <div>
               <p className="text-xs font-semibold text-zinc-300 mb-2">
-                Deployment
+                Deployment &amp; Team
               </p>
               <ul className="space-y-1">
                 {[
-                  "Edge hardware optimisation",
-                  "Latency profiling",
-                  "Runtime performance tuning",
+                  "Edge hardware deployment",
+                  "Latency profiling & tuning",
+                  "Mentored 50+ team members",
+                  "ML fundamentals training",
                 ].map((s) => (
                   <li key={s} className="text-xs text-zinc-500 leading-relaxed">
                     {s}
@@ -330,17 +343,19 @@ export default function SystemsWorld() {
           </div>
 
           <p className="text-xs text-zinc-500 leading-relaxed italic">
-            Mentored 50+ students across ML fundamentals and deployment
-            workflows. Represented team at the World Robotics Championship.
+            Represented India at the World Robotics Championship 2024. Trained
+            50+ members across computer vision, ML pipelines, and edge
+            deployment workflows.
           </p>
         </div>
 
         <TechStack
           items={[
             "Python",
-            "Computer Vision",
+            "Instance Segmentation",
+            "LiDAR",
             "Edge AI",
-            "Multi-Sensor Systems",
+            "Multi-Sensor Fusion",
             "Robotics Middleware",
           ]}
         />
@@ -348,28 +363,54 @@ export default function SystemsWorld() {
 
       <div className="max-w-5xl mx-auto systems-silver-divider h-[1px]" />
 
-      {/* ═══ DISTRIBUTED & VERIFIABLE SYSTEMS ═══ */}
+      {/* ═══ POST-AGI DIGITAL ECONOMY SIMULATION ═══ */}
       <Section>
-        <SectionTitle>Distributed &amp; Verifiable Compute Systems</SectionTitle>
+        <SectionTitle>Post-AGI Digital Economy Simulation</SectionTitle>
 
-        <p className="text-sm text-zinc-400 leading-relaxed max-w-2xl mb-8">
-          Researching coordination mechanisms for distributed inference and
-          verifiable execution in decentralised environments. Focused on
-          structural trust, auditability, and throughput constraints.
-        </p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl">
-          {[
-            "Distributed task orchestration",
-            "On-chain verification models",
-            "Auditability frameworks",
-            "Trust-minimised computation",
-          ].map((area) => (
-            <div key={area} className="systems-metallic-card px-5 py-4">
-              <p className="text-sm text-zinc-300">{area}</p>
-            </div>
-          ))}
+        <div className="systems-metallic-card p-8 max-w-3xl mb-8">
+          <h3 className="text-base font-semibold text-zinc-200 mb-3">
+            Agent-Based Economic Modeling Framework
+          </h3>
+          <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+            Built a large-scale agent-based simulation modeling autonomous
+            economic actors in post-AGI tokenised economies. The framework
+            introduces reputation currencies and tokenized attention markets
+            as coordination primitives, then explores policy interventions
+            for wealth distribution dynamics. Simulation results showed a
+            34% reduction in wealth concentration under targeted policy
+            mechanisms.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+            {[
+              { label: "Architecture", value: "Agent-Based" },
+              { label: "Coordination", value: "Reputation Currencies" },
+              { label: "Markets", value: "Tokenized Attention" },
+              { label: "Wealth Conc.", value: "-34%" },
+            ].map((stat, i) => (
+              <div key={i} className="text-center">
+                <p className="text-zinc-200 font-semibold text-sm">{stat.value}</p>
+                <p className="font-mono-label text-[0.5rem] text-zinc-500 mt-1">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="text-zinc-500 text-xs leading-relaxed italic">
+            Exploring how emergent coordination structures behave at scale —
+            from trust-minimised exchange to autonomous resource allocation
+            under structural uncertainty.
+          </p>
         </div>
+
+        <TechStack
+          items={[
+            "Agent-Based Modeling",
+            "Simulation Design",
+            "Tokenomics",
+            "Policy Analysis",
+            "Distributed Systems",
+          ]}
+        />
       </Section>
 
       {/* ═══ CONTACT ═══ */}
