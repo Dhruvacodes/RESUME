@@ -5,12 +5,11 @@ import { motion, useInView } from "framer-motion";
 
 /* ─── Animated Section ──────────────────────────────────────────── */
 const sectionVariants = {
-  hidden: { opacity: 0, y: 40, clipPath: "inset(0 100% 0 0)" },
+  hidden: { opacity: 0, y: 60 },
   visible: {
     opacity: 1,
     y: 0,
-    clipPath: "inset(0 0% 0 0)",
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
+    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as const },
   },
 };
 
@@ -22,7 +21,7 @@ function Section({
   className?: string;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
   return (
     <motion.section
       ref={ref}
@@ -41,48 +40,9 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-start gap-4 mb-8">
       <div className="w-[3px] h-10 mt-1 flex-shrink-0 rounded-full systems-gold-bar" />
-      <h2 className="font-serif-display text-3xl md:text-5xl leading-tight">
+      <h2 className="font-serif-display text-3xl md:text-5xl leading-tight text-zinc-900">
         {children}
       </h2>
-    </div>
-  );
-}
-
-/* ─── Technical Stack Row ───────────────────────────────────────── */
-function TechStack({ items }: { items: string[] }) {
-  return (
-    <div className="flex flex-wrap gap-x-2 gap-y-1 mt-6">
-      {items.map((item, i) => (
-        <span key={item} className="text-xs text-zinc-500">
-          {item}
-          {i < items.length - 1 && <span className="ml-2 text-zinc-600/40">•</span>}
-        </span>
-      ))}
-    </div>
-  );
-}
-
-/* ─── Skill Block ───────────────────────────────────────────────── */
-function SkillBlock({
-  title,
-  items,
-}: {
-  title: string;
-  items: string[];
-}) {
-  return (
-    <div className="systems-metallic-card p-6">
-      <h3 className="text-sm font-semibold mb-3 tracking-wide">{title}</h3>
-      <ul className="space-y-1.5">
-        {items.map((item) => (
-          <li
-            key={item}
-            className="text-xs text-zinc-500 leading-relaxed pl-3 relative before:content-[''] before:absolute before:left-0 before:top-[7px] before:w-1 before:h-1 before:rounded-full before:bg-zinc-400/50"
-          >
-            {item}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
@@ -92,7 +52,10 @@ export default function SystemsWorld() {
   return (
     <div
       className="relative min-h-screen"
-      style={{ background: "#1a1a1d", color: "#e4e4e7" }}
+      style={{
+        background: "var(--systems-bg)",
+        color: "var(--systems-fg)",
+      }}
     >
       <div className="noise-overlay" />
 
@@ -107,7 +70,8 @@ export default function SystemsWorld() {
           <h1
             className="font-serif-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] tracking-tight"
             style={{
-              background: "linear-gradient(90deg, #C0C0C0, #D4AF37, #C0C0C0)",
+              background:
+                "linear-gradient(90deg, #C0C0C0, #D4AF37, #C0C0C0)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -118,7 +82,7 @@ export default function SystemsWorld() {
             &amp; Engineering
           </h1>
           <div className="mt-10 w-24 h-[1px] systems-silver-divider" />
-          <p className="mt-6 text-base text-zinc-400 max-w-xl leading-relaxed">
+          <p className="mt-6 text-base text-zinc-500 max-w-xl leading-relaxed">
             Designing deterministic, constraint-aware systems across embedded
             firmware, autonomous robotics, and distributed compute.
           </p>
@@ -147,9 +111,9 @@ export default function SystemsWorld() {
           ].map((card) => (
             <div
               key={card.title}
-              className="systems-metallic-card p-6 hover:-translate-y-0.5 transition-transform duration-300"
+              className="sys-card p-6 hover:-translate-y-0.5 transition-transform duration-300"
             >
-              <h3 className="text-sm font-semibold mb-2 tracking-wide text-zinc-200">
+              <h3 className="text-sm font-semibold mb-2 tracking-wide text-zinc-800">
                 {card.title}
               </h3>
               <p className="text-xs text-zinc-500 leading-relaxed">
@@ -160,7 +124,7 @@ export default function SystemsWorld() {
         </motion.div>
 
         <div className="absolute bottom-8 left-6 md:left-16">
-          <p className="font-mono-label text-zinc-600 text-[0.6rem]">
+          <p className="font-mono-label text-zinc-400 text-[0.6rem]">
             Scroll to explore
           </p>
         </div>
@@ -169,44 +133,62 @@ export default function SystemsWorld() {
       {/* ═══ ARCHITECTURE & DESIGN PRINCIPLES ═══ */}
       <Section>
         <SectionTitle>Architecture &amp; Design Principles</SectionTitle>
-        <p className="text-zinc-400 max-w-2xl leading-relaxed mb-10">
+        <p className="text-zinc-500 max-w-2xl leading-relaxed mb-10">
           I build systems that operate reliably under constraint — limited
           compute, adversarial environments, and real-time requirements. My
           focus is determinism, reproducibility, and structural robustness.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl">
-          <SkillBlock
-            title="Deterministic Execution"
-            items={[
-              "Reproducible build pipelines",
-              "State-aware validation workflows",
-              "Controlled deployment transitions",
-            ]}
-          />
-          <SkillBlock
-            title="Failure-Oriented Engineering"
-            items={[
-              "Stress-first testing",
-              "Edge-case modeling",
-              "Degradation-aware design",
-            ]}
-          />
-          <SkillBlock
-            title="Resource-Constrained Optimisation"
-            items={[
-              "Hardware-aware model deployment",
-              "Latency-sensitive pipelines",
-              "Memory-conscious execution",
-            ]}
-          />
-          <SkillBlock
-            title="Validation & Verification"
-            items={[
-              "Walk-forward validation",
-              "Simulation-driven testing",
-              "Pre-deployment correctness checks",
-            ]}
-          />
+          {[
+            {
+              title: "Deterministic Execution",
+              items: [
+                "Reproducible build pipelines",
+                "State-aware validation workflows",
+                "Controlled deployment transitions",
+              ],
+            },
+            {
+              title: "Failure-Oriented Engineering",
+              items: [
+                "Stress-first testing",
+                "Edge-case modeling",
+                "Degradation-aware design",
+              ],
+            },
+            {
+              title: "Resource-Constrained Optimisation",
+              items: [
+                "Hardware-aware model deployment",
+                "Latency-sensitive pipelines",
+                "Memory-conscious execution",
+              ],
+            },
+            {
+              title: "Validation & Verification",
+              items: [
+                "Walk-forward validation",
+                "Simulation-driven testing",
+                "Pre-deployment correctness checks",
+              ],
+            },
+          ].map((block) => (
+            <div key={block.title} className="sys-card p-6">
+              <h3 className="text-sm font-semibold mb-3 tracking-wide text-zinc-800">
+                {block.title}
+              </h3>
+              <ul className="space-y-1.5">
+                {block.items.map((item) => (
+                  <li
+                    key={item}
+                    className="text-xs text-zinc-500 leading-relaxed pl-3 relative before:content-[''] before:absolute before:left-0 before:top-[7px] before:w-1 before:h-1 before:rounded-full before:bg-zinc-400/60"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </Section>
 
@@ -214,22 +196,22 @@ export default function SystemsWorld() {
 
       {/* ═══ EMBEDDED SYSTEMS ═══ */}
       <Section>
-        <SectionTitle>Embedded Systems &amp; Firmware Engineering</SectionTitle>
-
-        <div className="systems-metallic-card p-8 max-w-3xl mb-8">
-          <h3 className="text-base font-semibold text-zinc-200 mb-3">
-            Deterministic Firmware Migration Framework
-          </h3>
-          <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+        <p className="font-mono-label text-zinc-400 mb-4">
+          Embedded Systems &amp; Firmware
+        </p>
+        <h2 className="font-serif-display text-3xl md:text-5xl text-zinc-900 mb-8">
+          Deterministic Firmware Migration Framework
+        </h2>
+        <div className="sys-card p-8 max-w-3xl mb-8">
+          <p className="text-zinc-600 leading-relaxed mb-6">
             Designed a reproducible framework for cross-architecture firmware
             migration using semantic hardware abstraction layers that decouple
             application logic from platform-specific peripherals. The system
-            automates code translation across microcontroller families,
-            validates correctness through simulation-based testing, and
-            produces deterministic builds with full traceability from source
-            to binary.
+            automates code translation across microcontroller families, validates
+            correctness through simulation-based testing, and produces
+            deterministic builds with full traceability from source to binary.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 mb-6">
             {[
               "Semantic hardware abstraction layers",
               "Automated code translation across MCU families",
@@ -242,182 +224,184 @@ export default function SystemsWorld() {
             ].map((skill) => (
               <p
                 key={skill}
-                className="text-xs text-zinc-500 leading-relaxed pl-3 relative before:content-[''] before:absolute before:left-0 before:top-[7px] before:w-1 before:h-1 before:rounded-full before:bg-gold-accent/60"
+                className="text-xs text-zinc-500 leading-relaxed pl-3 relative before:content-[''] before:absolute before:left-0 before:top-[7px] before:w-1 before:h-1 before:rounded-full before:bg-amber-600/40"
               >
                 {skill}
               </p>
             ))}
           </div>
+          <p className="text-zinc-400 text-xs leading-relaxed italic">
+            Focus: reducing manual intervention in platform migration while
+            preserving functional correctness across microcontroller
+            architectures.
+          </p>
         </div>
-
-        <TechStack
-          items={[
+        <div className="flex gap-2 flex-wrap">
+          {[
             "C/C++",
             "Microcontrollers",
             "Semantic HAL",
             "Build Systems",
             "Simulation Testing",
             "Toolchain Integration",
-          ]}
-        />
+          ].map((tag) => (
+            <span
+              key={tag}
+              className="border border-zinc-300 px-3 py-1 text-xs text-zinc-500"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
       </Section>
 
       <div className="max-w-5xl mx-auto systems-silver-divider h-[1px]" />
 
       {/* ═══ AUTONOMOUS ROBOTICS ═══ */}
       <Section>
-        <SectionTitle>Autonomous Robotics &amp; Edge AI Systems</SectionTitle>
+        <p className="font-mono-label text-zinc-400 mb-4">
+          Autonomous Robotics &amp; Edge AI
+        </p>
+        <h2 className="font-serif-display text-3xl md:text-5xl text-zinc-900 mb-4">
+          AI Perception for Agricultural Robotics
+        </h2>
+        <p className="text-zinc-400 font-mono-label text-[0.6rem] mb-8">
+          Team RoboManipal — World Robotics Championship 2024
+        </p>
 
-        <div className="systems-metallic-card p-8 max-w-3xl mb-8">
-          <p className="font-mono-label text-zinc-600 text-[0.55rem] mb-3">
-            Team RoboManipal — AI Research · World Robotics Championship 2024
-          </p>
-          <h3 className="text-base font-semibold text-zinc-200 mb-3">
-            AI Perception for Agricultural Robotics
-          </h3>
-          <p className="text-sm text-zinc-400 leading-relaxed mb-6">
-            Developed the full AI perception stack for an autonomous agricultural
-            robot — instance segmentation for individual plant identification,
-            active viewpoint optimisation for multi-angle canopy observation,
-            3D spatial tracking using fused camera and LiDAR data, and
-            plant-level risk prediction for targeted intervention. The system
-            runs real-time inference on edge hardware and was validated in
-            international competition environments at the World Robotics
-            Championship 2024.
-          </p>
-
-          {/* Three-column skill groups */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            <div>
-              <p className="text-xs font-semibold text-zinc-300 mb-2">
-                Perception Layer
-              </p>
-              <ul className="space-y-1">
-                {[
-                  "Instance segmentation",
-                  "Active viewpoint optimisation",
-                  "Camera + LiDAR fusion",
-                  "3D spatial tracking",
-                  "Edge inference optimisation",
-                ].map((s) => (
-                  <li key={s} className="text-xs text-zinc-500 leading-relaxed">
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="text-xs font-semibold text-zinc-300 mb-2">
-                Decision Layer
-              </p>
-              <ul className="space-y-1">
-                {[
-                  "Plant-level risk prediction",
-                  "Targeted intervention planning",
-                  "Constraint-aware path planning",
-                  "Feedback-based control loops",
-                ].map((s) => (
-                  <li key={s} className="text-xs text-zinc-500 leading-relaxed">
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="text-xs font-semibold text-zinc-300 mb-2">
-                Deployment &amp; Team
-              </p>
-              <ul className="space-y-1">
-                {[
-                  "Edge hardware deployment",
-                  "Latency profiling & tuning",
-                  "Mentored 50+ team members",
-                  "ML fundamentals training",
-                ].map((s) => (
-                  <li key={s} className="text-xs text-zinc-500 leading-relaxed">
-                    {s}
-                  </li>
-                ))}
-              </ul>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div className="sys-card p-8">
+            <h3 className="text-base font-semibold text-zinc-800 mb-4">
+              Perception &amp; Decision Pipeline
+            </h3>
+            <p className="text-zinc-600 text-sm leading-relaxed mb-4">
+              Developed the full AI perception stack for an autonomous
+              agricultural robot — instance segmentation for individual plant
+              identification, active viewpoint optimisation for multi-angle
+              canopy observation, 3D spatial tracking using fused camera and
+              LiDAR data, and plant-level risk prediction for targeted
+              intervention. The system runs real-time inference on edge hardware.
+            </p>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { label: "Segmentation", value: "Instance-Level" },
+                { label: "Tracking", value: "3D Spatial" },
+                { label: "Sensors", value: "Camera + LiDAR" },
+                { label: "Deployment", value: "Edge Hardware" },
+              ].map((m, i) => (
+                <div key={i}>
+                  <p className="font-mono-label text-[0.5rem] text-zinc-400 mb-1">
+                    {m.label}
+                  </p>
+                  <p className="text-zinc-800 font-semibold text-sm">
+                    {m.value}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
-
-          <p className="text-xs text-zinc-500 leading-relaxed italic">
-            Represented India at the World Robotics Championship 2024. Trained
-            50+ members across computer vision, ML pipelines, and edge
-            deployment workflows.
-          </p>
+          <div className="sys-card p-8">
+            <h3 className="text-base font-semibold text-zinc-800 mb-4">
+              Decision &amp; Deployment
+            </h3>
+            <p className="text-zinc-600 text-sm leading-relaxed mb-4">
+              Constraint-aware path planning with feedback-based control loops.
+              Plant-level risk prediction drives targeted intervention planning.
+              Full system validated in international competition environments
+              with latency profiling and runtime performance tuning on
+              resource-constrained hardware.
+            </p>
+            <p className="text-zinc-400 text-xs leading-relaxed italic">
+              Mentored 50+ team members across ML fundamentals, computer vision,
+              and edge deployment workflows. Represented India at the World
+              Robotics Championship 2024.
+            </p>
+          </div>
         </div>
-
-        <TechStack
-          items={[
+        <div className="flex gap-2 flex-wrap">
+          {[
             "Python",
             "Instance Segmentation",
             "LiDAR",
             "Edge AI",
             "Multi-Sensor Fusion",
             "Robotics Middleware",
-          ]}
-        />
+          ].map((tag) => (
+            <span
+              key={tag}
+              className="border border-zinc-300 px-3 py-1 text-xs text-zinc-500"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
       </Section>
 
       <div className="max-w-5xl mx-auto systems-silver-divider h-[1px]" />
 
       {/* ═══ POST-AGI DIGITAL ECONOMY SIMULATION ═══ */}
       <Section>
-        <SectionTitle>Post-AGI Digital Economy Simulation</SectionTitle>
-
-        <div className="systems-metallic-card p-8 max-w-3xl mb-8">
-          <h3 className="text-base font-semibold text-zinc-200 mb-3">
-            Agent-Based Economic Modeling Framework
-          </h3>
-          <p className="text-sm text-zinc-400 leading-relaxed mb-6">
+        <p className="font-mono-label text-zinc-400 mb-4">
+          Simulation &amp; Agent-Based Systems
+        </p>
+        <h2 className="font-serif-display text-3xl md:text-5xl text-zinc-900 mb-8">
+          Post-AGI Digital Economy Simulation
+        </h2>
+        <div className="sys-card p-8 max-w-3xl mb-8">
+          <p className="text-zinc-600 leading-relaxed mb-6">
             Built a large-scale agent-based simulation modeling autonomous
             economic actors in post-AGI tokenised economies. The framework
-            introduces reputation currencies and tokenized attention markets
-            as coordination primitives, then explores policy interventions
-            for wealth distribution dynamics. Simulation results showed a
-            34% reduction in wealth concentration under targeted policy
-            mechanisms.
+            introduces reputation currencies and tokenized attention markets as
+            coordination primitives, then explores policy interventions for
+            wealth distribution dynamics. Simulation results showed a 34%
+            reduction in wealth concentration under targeted policy mechanisms.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
             {[
               { label: "Architecture", value: "Agent-Based" },
               { label: "Coordination", value: "Reputation Currencies" },
               { label: "Markets", value: "Tokenized Attention" },
-              { label: "Wealth Conc.", value: "-34%" },
+              { label: "Wealth Conc.", value: "−34%" },
             ].map((stat, i) => (
               <div key={i} className="text-center">
-                <p className="text-zinc-200 font-semibold text-sm">{stat.value}</p>
-                <p className="font-mono-label text-[0.5rem] text-zinc-500 mt-1">
+                <p className="text-zinc-800 font-semibold text-sm">
+                  {stat.value}
+                </p>
+                <p className="font-mono-label text-[0.5rem] text-zinc-400 mt-1">
                   {stat.label}
                 </p>
               </div>
             ))}
           </div>
-          <p className="text-zinc-500 text-xs leading-relaxed italic">
+          <p className="text-zinc-400 text-xs leading-relaxed italic">
             Exploring how emergent coordination structures behave at scale —
             from trust-minimised exchange to autonomous resource allocation
             under structural uncertainty.
           </p>
         </div>
-
-        <TechStack
-          items={[
+        <div className="flex gap-2 flex-wrap">
+          {[
             "Agent-Based Modeling",
             "Simulation Design",
             "Tokenomics",
             "Policy Analysis",
             "Distributed Systems",
-          ]}
-        />
+          ].map((tag) => (
+            <span
+              key={tag}
+              className="border border-zinc-300 px-3 py-1 text-xs text-zinc-500"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
       </Section>
 
       {/* ═══ CONTACT ═══ */}
       <Section className="pb-32">
         <SectionTitle>Get In Touch</SectionTitle>
         <div className="max-w-lg">
-          <p className="text-zinc-400 leading-relaxed mb-8">
+          <p className="text-zinc-500 leading-relaxed mb-8">
             Open to discussing research collaboration, systems design, and
             analytical problem-solving.
           </p>
@@ -441,7 +425,7 @@ export default function SystemsWorld() {
               { label: "Location", value: "Bengaluru, India", href: null },
             ].map((link, i) => (
               <div key={i} className="flex items-center gap-4">
-                <span className="font-mono-label text-zinc-600 w-20">
+                <span className="font-mono-label text-zinc-400 w-20">
                   {link.label}
                 </span>
                 {link.href ? (
@@ -455,12 +439,12 @@ export default function SystemsWorld() {
                         ? undefined
                         : "noopener noreferrer"
                     }
-                    className="text-sm text-zinc-300 border-b border-zinc-700 pb-0.5 hover:border-zinc-400 transition-colors duration-300"
+                    className="text-sm text-zinc-700 border-b border-zinc-300 pb-0.5 hover:border-zinc-600 transition-colors duration-300"
                   >
                     {link.value}
                   </a>
                 ) : (
-                  <span className="text-sm text-zinc-400">{link.value}</span>
+                  <span className="text-sm text-zinc-600">{link.value}</span>
                 )}
               </div>
             ))}
