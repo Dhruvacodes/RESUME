@@ -190,3 +190,23 @@ body {
     text-wrap: balance;
   }
 }
+
+/* ─── Systems page: gold + silver accents ──────────────────────── */
+.systems-gold-bar {
+  background: linear-gradient(180deg, #D4AF37, #C0C0C0);
+}
+
+.systems-silver-divider {
+  background: linear-gradient(90deg, transparent, #C0C0C0 30%, #C0C0C0 70%, transparent);
+  opacity: 0.18;
+}
+
+.systems-metallic-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid;
+  border-image: linear-gradient(135deg, rgba(192,192,192,0.18), rgba(212,175,55,0.14), rgba(192,192,192,0.18)) 1;
+  transition: border-image 0.4s ease, transform 0.3s ease;
+}
+.systems-metallic-card:hover {
+  border-image: linear-gradient(135deg, rgba(192,192,192,0.32), rgba(212,175,55,0.28), rgba(192,192,192,0.32)) 1;
+}
