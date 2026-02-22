@@ -141,7 +141,14 @@ export default function AxisContainer() {
   // If mobile, render stacked
   if (isMobile) {
     return (
-      <div className="w-full overflow-x-hidden">
+      <div
+        className="relative w-full"
+        style={{
+          overflowX: "hidden",
+          overflowY: "visible",
+          minHeight: "100vh",
+        }}
+      >
         <div id="core-section">
           <CoreWorld navigateToWorld={navigateToWorld} />
         </div>

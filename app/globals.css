@@ -23,14 +23,13 @@
 
 html {
   scroll-behavior: auto;
-  overflow-x: hidden;
 }
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
   overscroll-behavior: none;
   overflow-x: hidden;
-  max-width: 100vw;
+  max-width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -170,6 +169,17 @@ body {
 
 /* ─── Mobile: vertical stacking (≤ 1024px) ─── */
 @media (max-width: 1024px) {
+  html {
+    height: auto;
+    overflow-y: visible;
+  }
+  body {
+    height: auto;
+    min-height: 100vh;
+    touch-action: manipulation;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: visible;
+  }
   .axis-horizontal {
     flex-direction: column !important;
     width: 100% !important;

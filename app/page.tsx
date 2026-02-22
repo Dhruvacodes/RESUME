@@ -31,9 +31,11 @@ export default function Home() {
       document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
     } else {
-      // After intro, allow natural scroll — panels handle their own overflow
-      document.documentElement.style.overflow = "auto";
-      document.body.style.overflow = "auto";
+      // Remove inline overflow styles — let CSS handle scroll behavior.
+      // Desktop: fixed AxisContainer manages its own internal scroll.
+      // Mobile: native vertical scroll with CSS overflow-x: hidden on body.
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
     }
 
     return () => {
