@@ -2,22 +2,188 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --systems-bg: #EBEBE8;
+  --systems-fg: #18181B;
+  --systems-accent: #0066FF;
+  --markets-bg: #050505;
+  --markets-fg: #EBEBEB;
+  --markets-accent: #10B981;
+  --core-bg: #fcfbf9;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden;
+  scroll-behavior: auto;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(0, 102, 255, 0.2);
+  color: inherit;
+}
+
+.font-serif-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-mono-label {
+  font-family: 'Space Grotesk', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.7rem;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.3);
+  border-radius: 2px;
+}
+
+/* Noise overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Glass card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+}
+
+.glass-card-hover:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.05);
+}
+
+/* Shimmer border */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-border {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Stroke text */
+.stroke-text {
+  -webkit-text-stroke: 1.5px var(--systems-fg);
+  color: transparent;
+}
+
+/* Grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: calc(100% / 12) 60px;
+}
+
+/* Glow blob */
+.glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Clip reveal */
+@keyframes clipReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+.clip-reveal {
+  animation: clipReveal 0.8s var(--ease-smooth) forwards;
+}
+
+/* Emerald link underline */
+.emerald-link {
+  position: relative;
+  text-decoration: none;
+}
+.emerald-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--markets-accent);
+  transition: width 0.4s var(--ease-smooth);
+}
+.emerald-link:hover::after {
+  width: 100%;
+}
+
+/* Mobile stacked layout */
+@media (max-width: 768px) {
+  .axis-horizontal {
+    flex-direction: column !important;
+    width: 100vw !important;
+    transform: none !important;
+  }
+  .axis-horizontal > div {
+    width: 100vw !important;
+    min-height: 100vh;
+    height: auto !important;
+  }
+}
+
+/* Print styles for resume */
+@media print {
+  body { background: white; color: black; }
+  .no-print { display: none !important; }
 }
 
 @layer utilities {
