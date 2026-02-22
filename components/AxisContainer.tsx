@@ -61,10 +61,12 @@ export default function AxisContainer() {
     if (isMobile || !introCompleted) return;
 
     const handleWheel = (e: WheelEvent) => {
-      // Use deltaX for horizontal scroll, deltaY for vertical-to-horizontal
-      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      targetX.current = clamp(targetX.current - delta * 0.05, -200, 0);
-      e.preventDefault();
+      // Only handle explicit horizontal scroll for world navigation
+      // Vertical scroll passes through to panel overflow-y-auto
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        targetX.current = clamp(targetX.current - e.deltaX * 0.05, -200, 0);
+        e.preventDefault();
+      }
     };
 
     const container = containerRef.current;

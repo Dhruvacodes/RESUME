@@ -36,6 +36,42 @@ function Section({
   );
 }
 
+/* ─── Project Card ──────────────────────────────────────────────── */
+function ProjectCard({
+  title,
+  description,
+  tags,
+  note,
+}: {
+  title: string;
+  description: string;
+  tags: string[];
+  note?: string;
+}) {
+  return (
+    <div className="border border-zinc-300 p-8 bg-white/30">
+      <h3 className="text-lg font-semibold mb-4">{title}</h3>
+      <p className="text-zinc-600 text-sm leading-relaxed mb-4">{description}</p>
+      {note && (
+        <p className="text-zinc-400 text-xs leading-relaxed italic mb-4">
+          {note}
+        </p>
+      )}
+      <div className="flex gap-2 flex-wrap">
+        {tags.map((tag) => (
+          <span
+            key={tag}
+            className="border border-zinc-300 px-3 py-1 text-xs font-mono-label"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─── SystemsWorld ──────────────────────────────────────────────── */
 export default function SystemsWorld() {
   return (
     <div
@@ -52,182 +88,189 @@ export default function SystemsWorld() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="font-mono-label text-zinc-500 mb-6">Technology & Research</p>
+          <p className="font-mono-label text-zinc-500 mb-6">
+            Technology & Research
+          </p>
           <h1 className="font-serif-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] tracking-tight">
-            <span className="stroke-text">AI,</span> Systems
+            Building Systems
             <br />
-            & Simulation
+            <span className="stroke-text">That Scale</span>
           </h1>
           <div className="mt-12 w-24 h-[1px] bg-zinc-400" />
           <p className="mt-6 text-lg text-zinc-600 max-w-lg leading-relaxed">
-            Building and validating analytical systems under real-world
-            constraints — from edge AI perception to large-scale
-            economic simulation.
+            Designing robust systems under real-world constraints — from
+            embedded firmware and autonomous robotics to emerging intersections
+            of decentralised computation and AI.
           </p>
         </motion.div>
         <div className="absolute bottom-8 left-6 md:left-16">
-          <p className="font-mono-label text-zinc-400 text-[0.6rem]">Scroll to explore</p>
+          <p className="font-mono-label text-zinc-400 text-[0.6rem]">
+            Scroll to explore
+          </p>
         </div>
       </section>
 
-      {/* Section 01: AI Perception & Edge Systems */}
+      {/* Section 01: Firmware Migration */}
       <Section>
-        <p className="font-mono-label text-zinc-500 mb-4">01 — AI Perception & Edge Systems</p>
+        <p className="font-mono-label text-zinc-500 mb-4">
+          01 — Embedded Systems
+        </p>
         <h2 className="font-serif-display text-3xl md:text-5xl mb-8">
-          Autonomous Perception Pipeline
+          Firmware Migration Framework
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <ProjectCard
+            title="Deterministic Cross-Architecture Porting"
+            description="Designed and implemented a deterministic migration framework that automates firmware porting across different microcontroller architectures. The system reduces manual intervention significantly while maintaining reproducibility and correctness across hardware platforms."
+            tags={[
+              "Cross-Architecture",
+              "Deterministic Migration",
+              "Embedded Systems",
+              "Automation",
+            ]}
+            note="Focus: eliminating human error in cross-platform firmware transitions."
+          />
           <div className="border border-zinc-300 p-8 bg-white/30">
-            <h3 className="text-lg font-semibold mb-4">Team RoboManipal — AI Researcher</h3>
-            <p className="text-zinc-600 text-sm leading-relaxed mb-4">
-              Built an AI perception and prescriptive decision system for autonomous
-              robotics. Integrated instance segmentation, 3D spatial tracking, and
-              multi-sensor fusion into a unified real-time pipeline. Represented the
-              team at the World Robotics Championship.
-            </p>
-            <div className="flex gap-2 flex-wrap">
-              {["Instance Segmentation", "3D Tracking", "Sensor Fusion", "Edge Deployment"].map((tag) => (
-                <span key={tag} className="border border-zinc-300 px-3 py-1 text-xs font-mono-label">
-                  {tag}
+            <h3 className="text-lg font-semibold mb-4">Design Principles</h3>
+            <ul className="space-y-3 text-sm text-zinc-600 leading-relaxed">
+              <li className="flex gap-3">
+                <span className="text-zinc-400 flex-shrink-0">01</span>
+                <span>
+                  Reproducibility over speed — every migration is fully
+                  auditable and repeatable.
                 </span>
-              ))}
-            </div>
-          </div>
-          <div className="border border-zinc-300 p-8 bg-white/30">
-            <h3 className="text-lg font-semibold mb-4">Firmware Migration Framework</h3>
-            <p className="text-zinc-600 text-sm leading-relaxed mb-4">
-              Designed a deterministic firmware migration framework that automated
-              cross-architecture microcontroller porting. Reduced manual intervention
-              and ensured reproducibility across hardware platforms.
-            </p>
-            <div className="flex gap-2 flex-wrap">
-              {["Deterministic Migration", "Cross-Architecture", "Embedded Systems", "Automation"].map((tag) => (
-                <span key={tag} className="border border-zinc-300 px-3 py-1 text-xs font-mono-label">
-                  {tag}
+              </li>
+              <li className="flex gap-3">
+                <span className="text-zinc-400 flex-shrink-0">02</span>
+                <span>
+                  Architecture-agnostic abstractions that translate cleanly
+                  between target platforms.
                 </span>
-              ))}
-            </div>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-zinc-400 flex-shrink-0">03</span>
+                <span>
+                  Validation-first workflow ensuring correctness before
+                  deployment to hardware.
+                </span>
+              </li>
+            </ul>
           </div>
         </div>
+      </Section>
+
+      {/* Section 02: Blockchain + AI */}
+      <Section>
+        <p className="font-mono-label text-zinc-500 mb-4">
+          02 — Emerging Research
+        </p>
+        <h2 className="font-serif-display text-3xl md:text-5xl mb-8">
+          Blockchain &times; AI Convergence
+        </h2>
         <div className="max-w-3xl">
-          <p className="text-zinc-500 text-sm leading-relaxed italic">
-            Focus throughout: robustness, reproducibility, and performance under
-            real-world constraints — not just benchmark optimisation.
-          </p>
+          <ProjectCard
+            title="Decentralised Computation & Intelligent Systems"
+            description="Exploring the intersection of blockchain infrastructure and AI — specifically how decentralised computation models can support trustworthy, auditable AI workflows. The research investigates coordination mechanisms for distributed inference and the role of on-chain verification in maintaining model integrity."
+            tags={[
+              "Decentralised AI",
+              "On-Chain Verification",
+              "Distributed Inference",
+              "Trust Frameworks",
+            ]}
+            note="Early-stage research — motivated by the growing need for transparent and verifiable AI systems at scale."
+          />
         </div>
-      </Section>
-
-      {/* Section 02: Simulation & Digital Economy Modeling */}
-      <Section>
-        <p className="font-mono-label text-zinc-500 mb-4">02 — Simulation & Digital Economy</p>
-        <h2 className="font-serif-display text-3xl md:text-5xl mb-8">
-          Post-AGI Economic Simulation
-        </h2>
-        <div className="border border-zinc-300 p-8 bg-white/30 max-w-3xl mb-8">
-          <h3 className="text-lg font-semibold mb-4">Agent-Based Economic Framework</h3>
-          <p className="text-zinc-600 leading-relaxed mb-6">
-            Designed a Post-AGI Digital Economy Simulation Framework exploring structural
-            interventions in macro-level digital economies. The framework models autonomous
-            economic agents interacting within tokenised reputation systems and synthetic
-            labour markets.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            {[
-              { label: "Model Type", value: "Agent-Based" },
-              { label: "Wealth Concentration", value: "−34%" },
-              { label: "Labour Markets", value: "Synthetic" },
-              { label: "Interventions", value: "Policy Protocols" },
-            ].map((item, i) => (
-              <div key={i} className="border border-zinc-200 p-3 text-center">
-                <p className="font-mono-label text-[0.5rem] text-zinc-500 mb-1">{item.label}</p>
-                <p className="text-sm font-semibold text-zinc-800">{item.value}</p>
-              </div>
-            ))}
-          </div>
-          <div className="flex gap-2 flex-wrap">
-            {["Agent-Based Modeling", "Tokenised Reputation", "Synthetic Labour", "Policy Simulation"].map((tag) => (
-              <span key={tag} className="border border-zinc-300 px-3 py-1 text-xs font-mono-label">
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-        <p className="text-zinc-500 text-sm leading-relaxed italic max-w-3xl">
-          Designed to test structural interventions in macro-level digital economies —
-          moving beyond optimisation toward understanding systemic dynamics.
+        <p className="text-zinc-500 text-sm leading-relaxed italic max-w-3xl mt-6">
+          Interested in the structural question: how do you build systems where
+          the AI&apos;s reasoning is auditable without sacrificing throughput?
         </p>
       </Section>
 
-      {/* Section 03: Research Methodology */}
+      {/* Section 03: Autonomous Robotics */}
       <Section>
-        <p className="font-mono-label text-zinc-500 mb-4">03 — Research Methodology</p>
-        <h2 className="font-serif-display text-3xl md:text-5xl mb-8">
-          Analytical Rigour
-        </h2>
-        <p className="text-zinc-600 mb-8 max-w-2xl leading-relaxed">
-          Emphasis on stress-testing assumptions rather than optimising surface-level
-          metrics. Every research project follows a validation-first methodology.
+        <p className="font-mono-label text-zinc-500 mb-4">
+          03 — Autonomous Robotics
         </p>
-        <div className="max-w-3xl space-y-6">
-          {[
-            {
-              phase: "Walk-Forward Validation",
-              desc: "Out-of-sample testing on rolling windows to ensure model generalisation, not curve-fitting.",
-            },
-            {
-              phase: "Regime-Aware Modeling",
-              desc: "Segmenting analysis by market or system regime to avoid averaging away structural differences.",
-            },
-            {
-              phase: "Parameter Sensitivity Testing",
-              desc: "Systematic variation of inputs to identify fragile assumptions and robust parameter ranges.",
-            },
-            {
-              phase: "Causality-Preserving Evaluation",
-              desc: "Ensuring evaluation protocols respect temporal ordering and avoid look-ahead bias.",
-            },
-            {
-              phase: "Robustness Under Execution Constraints",
-              desc: "Validating model performance under realistic latency, cost, and capacity constraints.",
-            },
-          ].map((item, i) => (
-            <div key={i} className="flex gap-6 items-start">
-              <span className="font-mono-label text-zinc-400 text-sm mt-1 flex-shrink-0 w-6">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div className="border-l border-zinc-300 pl-6">
-                <h3 className="text-lg font-semibold mb-1">{item.phase}</h3>
-                <p className="text-zinc-600 text-sm leading-relaxed">{item.desc}</p>
-              </div>
+        <h2 className="font-serif-display text-3xl md:text-5xl mb-8">
+          AI Perception Pipeline
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <ProjectCard
+            title="Team RoboManipal — AI Researcher"
+            description="Developed an end-to-end AI perception and decision system for autonomous robotics. The pipeline integrates real-time object understanding, spatial awareness, and multi-sensor inputs into a unified framework deployed on edge hardware. Represented the team at the World Robotics Championship."
+            tags={[
+              "Real-Time Perception",
+              "Sensor Fusion",
+              "Edge AI",
+              "Autonomous Systems",
+            ]}
+          />
+          <div className="border border-zinc-300 p-8 bg-white/30">
+            <h3 className="text-lg font-semibold mb-4">Impact</h3>
+            <div className="space-y-4 text-sm text-zinc-600 leading-relaxed">
+              <p>
+                Trained 50+ team members across ML fundamentals, computer
+                vision, and edge deployment workflows.
+              </p>
+              <p>
+                Built internal tooling and documentation to accelerate
+                onboarding for new researchers joining the autonomy team.
+              </p>
+              <p>
+                Represented RoboManipal at international competition,
+                validating the system under real-world operating conditions.
+              </p>
             </div>
-          ))}
+          </div>
         </div>
       </Section>
 
       {/* Contact */}
       <Section className="pb-32">
         <p className="font-mono-label text-zinc-500 mb-4">04 — Contact</p>
-        <h2 className="font-serif-display text-3xl md:text-5xl mb-8">Get In Touch</h2>
+        <h2 className="font-serif-display text-3xl md:text-5xl mb-8">
+          Get In Touch
+        </h2>
         <div className="max-w-lg">
           <p className="text-zinc-600 leading-relaxed mb-8">
-            Open to discussing research collaboration, strategic consulting,
+            Open to discussing research collaboration, systems design,
             and analytical problem-solving.
           </p>
           <div className="space-y-3">
             {[
-              { label: "Email", value: "dhruvagrawal479@gmail.com", href: "mailto:dhruvagrawal479@gmail.com" },
-              { label: "LinkedIn", value: "linkedin.com/in/dhruva02", href: "https://linkedin.com/in/dhruva02" },
-              { label: "GitHub", value: "github.com/Dhruvacodes", href: "https://github.com/Dhruvacodes" },
+              {
+                label: "Email",
+                value: "dhruvagrawal479@gmail.com",
+                href: "mailto:dhruvagrawal479@gmail.com",
+              },
+              {
+                label: "LinkedIn",
+                value: "linkedin.com/in/dhruva02",
+                href: "https://linkedin.com/in/dhruva02",
+              },
+              {
+                label: "GitHub",
+                value: "github.com/Dhruvacodes",
+                href: "https://github.com/Dhruvacodes",
+              },
               { label: "Location", value: "Bengaluru, India", href: null },
             ].map((link, i) => (
               <div key={i} className="flex items-center gap-4">
-                <span className="font-mono-label text-zinc-500 w-20">{link.label}</span>
+                <span className="font-mono-label text-zinc-500 w-20">
+                  {link.label}
+                </span>
                 {link.href ? (
                   <a
                     href={link.href}
-                    target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                    rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                    className="text-sm border-b border-zinc-300 pb-0.5 hover:border-systems-accent transition-colors duration-300"
+                    target={
+                      link.href.startsWith("mailto") ? undefined : "_blank"
+                    }
+                    rel={
+                      link.href.startsWith("mailto")
+                        ? undefined
+                        : "noopener noreferrer"
+                    }
+                    className="text-sm border-b border-zinc-300 pb-0.5 hover:border-zinc-700 transition-colors duration-300"
                   >
                     {link.value}
                   </a>

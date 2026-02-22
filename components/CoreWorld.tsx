@@ -1,26 +1,80 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { WorldName } from "@/lib/store";
 
 interface CoreWorldProps {
   navigateToWorld: (world: WorldName) => void;
 }
 
+/* ─── Expandable Panel ─────────────────────────────────────────── */
+function ExpandablePanel({
+  title,
+  children,
+  delay = 0,
+}: {
+  title: string;
+  children: React.ReactNode;
+  delay?: number;
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <motion.div
+      className="border border-zinc-200 overflow-hidden"
+      initial={{ opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-zinc-50 transition-colors duration-300"
+      >
+        <span className="text-sm font-semibold text-zinc-800 tracking-wide">
+          {title}
+        </span>
+        <motion.span
+          className="text-zinc-400 text-lg select-none"
+          animate={{ rotate: open ? 45 : 0 }}
+          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        >
+          +
+        </motion.span>
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="px-6 pb-5 text-sm text-zinc-600 leading-relaxed">
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
+/* ─── CoreWorld ─────────────────────────────────────────────────── */
 export default function CoreWorld({ navigateToWorld }: CoreWorldProps) {
   return (
     <div
-      className="relative min-h-screen flex flex-col items-center justify-center px-6"
+      className="relative min-h-screen flex flex-col items-center px-6 py-24"
       style={{ background: "var(--core-bg)", color: "#18181B" }}
     >
-      {/* Identity Statement */}
+      {/* ── Hero ── */}
       <motion.div
-        className="text-center max-w-3xl"
+        className="text-center max-w-3xl mt-8"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
       >
-        <p className="font-mono-label text-zinc-400 mb-8">Dual Axis</p>
+        <p className="font-mono-label text-zinc-400 mb-8">Portfolio</p>
         <h1 className="font-serif-display text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight mb-6">
           Dhruv Agrawal
         </h1>
@@ -28,58 +82,90 @@ export default function CoreWorld({ navigateToWorld }: CoreWorldProps) {
           Technology × Finance
         </p>
         <div className="w-16 h-[1px] bg-zinc-300 mx-auto mb-8" />
-        <p className="text-zinc-500 text-lg max-w-xl mx-auto leading-relaxed mb-8">
-          Exploring complex systems across capital markets, distributed
-          architectures, and large-scale simulation.
-        </p>
-        <p className="text-zinc-400 text-sm max-w-lg mx-auto leading-relaxed">
-          Computer and Communication Engineering student at Manipal Institute of
-          Technology with strong foundations in statistical learning, systems
-          thinking, and quantitative modeling. Interested in applying analytical
-          rigor to high-impact strategic and business challenges.
+        <p className="text-zinc-500 text-lg max-w-xl mx-auto leading-relaxed">
+          Analytical problem-solver with a deep interest in technology-driven
+          systems and capital markets. I study how complex systems behave under
+          stress, how models fail in production, and where structured thinking
+          creates the most leverage.
         </p>
       </motion.div>
 
-      {/* Highlight Blocks */}
-      <motion.div
-        className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl w-full"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      >
-        {[
-          {
-            title: "IISc Podium Recognition",
-            desc: "FX Statistical Arbitrage Research",
-          },
-          {
-            title: "14-Year HF Market Dataset",
-            desc: "5-second frequency, multi-currency",
-          },
-          {
-            title: "World Robotics Championship",
-            desc: "Represented RoboManipal at international level",
-          },
-          {
-            title: "50+ Members Trained",
-            desc: "ML & Edge AI workshops and mentorship",
-          },
-        ].map((item, i) => (
-          <div
-            key={i}
-            className="border border-zinc-200 p-5 text-left"
-          >
-            <h3 className="text-sm font-semibold text-zinc-800 mb-1">
-              {item.title}
-            </h3>
-            <p className="text-xs text-zinc-500 leading-relaxed">
-              {item.desc}
-            </p>
+      {/* ── Expandable Panels ── */}
+      <div className="mt-16 w-full max-w-2xl space-y-3">
+        <ExpandablePanel title="Education" delay={0.6}>
+          <div className="space-y-3">
+            <div>
+              <p className="font-semibold text-zinc-800">
+                Manipal Institute of Technology, Manipal
+              </p>
+              <p className="text-zinc-500 text-xs">
+                B.Tech — Computer and Communication Engineering · 2023 – Present
+              </p>
+            </div>
+            <div>
+              <p className="font-semibold text-zinc-800">
+                Bhavan&apos;s Bhagwandas Purohit Vidya Mandir, Nagpur
+              </p>
+              <p className="text-zinc-500 text-xs">
+                Class XII — 93.6% · Class X — 98.4%
+              </p>
+            </div>
           </div>
-        ))}
-      </motion.div>
+        </ExpandablePanel>
 
-      {/* Directional Hints */}
+        <ExpandablePanel title="Research Interests" delay={0.7}>
+          <ul className="list-none space-y-2">
+            <li>
+              <span className="font-medium text-zinc-800">Quantitative Finance</span>{" "}
+              — statistical arbitrage, risk modeling, walk-forward validation
+            </li>
+            <li>
+              <span className="font-medium text-zinc-800">AI & Perception Systems</span>{" "}
+              — real-time inference, sensor fusion, edge deployment
+            </li>
+            <li>
+              <span className="font-medium text-zinc-800">Simulation & Modeling</span>{" "}
+              — agent-based economic frameworks, policy-driven synthetic markets
+            </li>
+            <li>
+              <span className="font-medium text-zinc-800">Systems Thinking</span>{" "}
+              — cross-domain analytical frameworks for complex adaptive systems
+            </li>
+          </ul>
+        </ExpandablePanel>
+
+        <ExpandablePanel title="Leadership & Initiatives" delay={0.8}>
+          <ul className="list-none space-y-2">
+            <li>
+              <span className="font-medium text-zinc-800">AI Researcher — Team RoboManipal</span>
+              <br />
+              Led AI perception development; trained 50+ members in ML and Edge AI workflows.
+              Represented team at the World Robotics Championship.
+            </li>
+            <li>
+              <span className="font-medium text-zinc-800">Quantitative Research — Finova, MIT Manipal</span>
+              <br />
+              Conducted independent research across FX arbitrage, crash forecasting,
+              and portfolio construction. IISc podium recognition.
+            </li>
+            <li>
+              <span className="font-medium text-zinc-800">Member — E-Cell, MIT Manipal</span>
+              <br />
+              Engaged with startup ecosystem and innovation-driven initiatives.
+            </li>
+          </ul>
+        </ExpandablePanel>
+
+        <ExpandablePanel title="Publications & Patent Work" delay={0.9}>
+          <p className="text-zinc-500 italic">
+            Research papers and patent applications are in progress across
+            quantitative finance and autonomous systems. Details available upon
+            request.
+          </p>
+        </ExpandablePanel>
+      </div>
+
+      {/* ── Directional Nav ── */}
       <motion.div
         className="mt-20 flex items-center gap-16 md:gap-32"
         initial={{ opacity: 0 }}
@@ -119,39 +205,61 @@ export default function CoreWorld({ navigateToWorld }: CoreWorldProps) {
         </button>
       </motion.div>
 
-      {/* Contact Info */}
+      {/* ── Contact ── */}
       <motion.div
         className="mt-12 flex flex-wrap justify-center gap-6 text-[0.6rem] font-mono-label text-zinc-400"
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.6 }}
         transition={{ duration: 0.6, delay: 1.4 }}
       >
-        <a href="mailto:dhruvagrawal479@gmail.com" className="hover:text-zinc-700 transition-colors">
+        <a
+          href="mailto:dhruvagrawal479@gmail.com"
+          className="hover:text-zinc-700 transition-colors"
+        >
           dhruvagrawal479@gmail.com
         </a>
-        <a href="https://linkedin.com/in/dhruva02" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-700 transition-colors">
+        <a
+          href="https://linkedin.com/in/dhruva02"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-zinc-700 transition-colors"
+        >
           LinkedIn
         </a>
-        <a href="https://github.com/Dhruvacodes" target="_blank" rel="noopener noreferrer" className="hover:text-zinc-700 transition-colors">
+        <a
+          href="https://github.com/Dhruvacodes"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-zinc-700 transition-colors"
+        >
           GitHub
         </a>
         <span>Bengaluru, India</span>
       </motion.div>
 
-      {/* Navigation links */}
+      {/* ── Page Links ── */}
       <motion.div
-        className="absolute bottom-8 flex gap-8"
+        className="mt-10 flex gap-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.4 }}
         transition={{ duration: 0.6, delay: 1.5 }}
       >
-        <a href="/resume" className="font-mono-label text-[0.55rem] hover:opacity-100 transition-opacity">
+        <a
+          href="/resume"
+          className="font-mono-label text-[0.55rem] hover:opacity-100 transition-opacity"
+        >
           Resume
         </a>
-        <a href="/ideas" className="font-mono-label text-[0.55rem] hover:opacity-100 transition-opacity">
+        <a
+          href="/ideas"
+          className="font-mono-label text-[0.55rem] hover:opacity-100 transition-opacity"
+        >
           Ideas
         </a>
-        <a href="/play" className="font-mono-label text-[0.55rem] hover:opacity-100 transition-opacity">
+        <a
+          href="/play"
+          className="font-mono-label text-[0.55rem] hover:opacity-100 transition-opacity"
+        >
           Play
         </a>
       </motion.div>

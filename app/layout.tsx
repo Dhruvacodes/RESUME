@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     template: "%s | Dhruv Agrawal",
   },
   description:
-    "Technology & Finance Enthusiast. Exploring complex systems across capital markets, distributed architectures, and large-scale simulation.",
+    "Technology & Finance Focused Analyst. Exploring complex systems across capital markets, technology infrastructure, and analytical problem-solving.",
   keywords: [
     "Dhruv Agrawal",
     "technology",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     siteName: "Dhruv Agrawal",
     title: "Dhruv Agrawal — Systems ↔ Markets",
     description:
-      "Technology & Finance Enthusiast. Exploring complex systems across capital markets, distributed architectures, and large-scale simulation.",
+      "Technology & Finance Focused Analyst. Exploring complex systems across capital markets, technology infrastructure, and analytical problem-solving.",
     images: [
       {
         url: "/og-image.png",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dhruv Agrawal — Systems ↔ Markets",
     description:
-      "Technology & Finance Enthusiast. Exploring complex systems across capital markets, distributed architectures, and large-scale simulation.",
+      "Technology & Finance Focused Analyst. Exploring complex systems across capital markets, technology infrastructure, and analytical problem-solving.",
     images: ["/og-image.png"],
   },
   robots: {

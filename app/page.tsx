@@ -14,7 +14,7 @@ const CursorManager = dynamic(() => import("@/components/CursorManager"), {
 });
 
 export default function Home() {
-  const { introCompleted, setIsMobile, isMobile } = usePortfolioStore();
+  const { introCompleted, setIsMobile } = usePortfolioStore();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -27,23 +27,20 @@ export default function Home() {
 
   // Manage overflow based on state
   useEffect(() => {
-    if (isMobile && introCompleted) {
-      document.documentElement.style.overflow = "auto";
-      document.body.style.overflow = "auto";
-    } else if (!introCompleted) {
+    if (!introCompleted) {
       document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
     } else {
-      // Desktop with intro completed: axis handles its own scrolling
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.overflow = "hidden";
+      // After intro, allow natural scroll — panels handle their own overflow
+      document.documentElement.style.overflow = "auto";
+      document.body.style.overflow = "auto";
     }
 
     return () => {
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
     };
-  }, [isMobile, introCompleted]);
+  }, [introCompleted]);
 
   return (
     <main className="relative">

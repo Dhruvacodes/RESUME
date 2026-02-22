@@ -55,94 +55,45 @@ export default function MarketsWorld() {
             Quantitative Finance
           </p>
           <h1 className="font-serif-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] tracking-tight text-white">
-            Capital
+            Decoding
             <br />
-            Markets &
+            Market
             <br />
-            <span className="text-markets-accent">Quant Research</span>
+            <span className="text-markets-accent">Dynamics</span>
           </h1>
           <div className="mt-12 w-24 h-[1px] bg-emerald-500/30" />
           <p className="mt-6 text-lg text-zinc-400 max-w-lg leading-relaxed">
-            Statistical arbitrage, risk modeling, and portfolio construction
-            grounded in analytical rigour and walk-forward validation.
+            Research across risk modeling, portfolio construction, and
+            statistical inference in financial markets — grounded in analytical
+            rigour, walk-forward validation, and an emphasis on understanding
+            why models fail.
           </p>
         </motion.div>
       </section>
 
       <TickerRibbon />
 
-      {/* Section 01: FX Statistical Arbitrage */}
-      <Section>
-        <p className="font-mono-label text-emerald-500/60 mb-4">01 — FX Statistical Arbitrage</p>
-        <h2 className="font-serif-display text-3xl md:text-5xl text-white mb-4">
-          Cross-Currency Factor Strategy
-        </h2>
-        <p className="text-emerald-500/60 font-mono-label text-[0.6rem] mb-8">
-          IISc Podium Recognition
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <div className="glass-card shimmer-border p-8">
-            <h3 className="text-lg font-semibold text-white mb-4">
-              Strategy Design
-            </h3>
-            <p className="text-zinc-400 text-sm leading-relaxed mb-4">
-              Built and validated a market-neutral FX strategy on a 14-year dataset
-              at 5-second frequency. Applied factor decomposition to remove USD
-              exposure, then traded residual momentum signals across currency pairs.
-              Walk-forward backtesting ensured out-of-sample integrity.
-            </p>
-            <div className="flex gap-2 flex-wrap">
-              {["Market-Neutral", "Factor Decomposition", "Residual Momentum", "Walk-Forward"].map((tag) => (
-                <span key={tag} className="border border-zinc-700 px-3 py-1 text-xs text-zinc-400">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-          <div className="glass-card shimmer-border p-8">
-            <h3 className="text-lg font-semibold text-white mb-4">
-              Verified Metrics
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { label: "Net Sharpe (1 bp cost)", value: "1.99" },
-                { label: "Max Drawdown", value: "−13.6%" },
-                { label: "Profitable Years", value: "12 / 14" },
-                { label: "Dataset Span", value: "14 Years" },
-                { label: "Frequency", value: "5-Second" },
-                { label: "Construction", value: "Market-Neutral" },
-              ].map((m, i) => (
-                <div key={i}>
-                  <p className="font-mono-label text-[0.5rem] text-zinc-500 mb-1">{m.label}</p>
-                  <p className="text-white font-semibold text-sm">{m.value}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Section 02: Bitcoin Crash Forecasting */}
+      {/* Section 01: Hybrid Risk Modeling */}
       <Section>
         <p className="font-mono-label text-emerald-500/60 mb-4">
-          02 — Hybrid Crash Forecasting
+          01 — Risk Modeling & Early Warning
         </p>
         <h2 className="font-serif-display text-3xl md:text-5xl text-white mb-8">
-          Bitcoin Risk & Early Warning
+          Hybrid Crash Forecasting
         </h2>
         <div className="glass-card shimmer-border p-8 max-w-3xl mb-8">
           <p className="text-zinc-400 leading-relaxed mb-6">
-            Developed a hybrid risk modeling and early detection system combining
-            EGARCH volatility modeling, LPPL bubble diagnostics, sentiment signals,
-            and attention-based LSTM to forecast Bitcoin crash events. Rolling-window
-            cross-validation ensured temporal integrity of all predictions.
+            Developed a multi-signal risk modeling system for cryptocurrency
+            markets. The approach combines volatility regime detection, bubble
+            diagnostics, sentiment-derived features, and sequence-based deep
+            learning to generate early warning signals for crash events.
+            Validated using temporally-consistent evaluation protocols.
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-6">
             {[
-              { value: "26 days", label: "Early Warning Lead" },
-              { value: "0.97", label: "ROC AUC" },
-              { value: "EGARCH", label: "Volatility Model" },
-              { value: "LPPL + LSTM", label: "Detection Pipeline" },
+              { label: "Domain", value: "Cryptocurrency" },
+              { label: "Approach", value: "Multi-Signal Hybrid" },
+              { label: "Validation", value: "Rolling-Window CV" },
             ].map((stat, i) => (
               <div key={i} className="text-center">
                 <p className="text-white font-semibold text-sm">{stat.value}</p>
@@ -152,93 +103,182 @@ export default function MarketsWorld() {
               </div>
             ))}
           </div>
+          <p className="text-zinc-500 text-xs leading-relaxed italic">
+            Focus: building a framework that identifies structural fragility in
+            price dynamics rather than fitting to historical crash patterns.
+          </p>
         </div>
         <div className="flex gap-2 flex-wrap">
-          {["EGARCH", "LPPL Diagnostics", "Sentiment Signals", "Attention LSTM", "Rolling CV"].map((tag) => (
-            <span key={tag} className="border border-zinc-700 px-3 py-1 text-xs text-zinc-400">
+          {[
+            "Volatility Modeling",
+            "Bubble Diagnostics",
+            "Sentiment Signals",
+            "Deep Learning",
+            "Temporal Validation",
+          ].map((tag) => (
+            <span
+              key={tag}
+              className="border border-zinc-700 px-3 py-1 text-xs text-zinc-400"
+            >
               {tag}
             </span>
           ))}
         </div>
       </Section>
 
-      {/* Section 03: Cross-Asset Portfolio Optimization */}
+      {/* Section 02: HF Dataset Research */}
       <Section>
         <p className="font-mono-label text-emerald-500/60 mb-4">
-          03 — Portfolio Optimisation
+          02 — High-Frequency FX Research
         </p>
         <h2 className="font-serif-display text-3xl md:text-5xl text-white mb-8">
-          Cross-Asset Allocation
+          Large-Scale FX Dataset Analysis
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="glass-card shimmer-border p-8">
             <h3 className="text-lg font-semibold text-white mb-4">
-              Analytical Framework
+              Dataset Scope
             </h3>
             <p className="text-zinc-400 text-sm leading-relaxed mb-4">
-              Constructed a cross-asset portfolio using Hierarchical Risk Parity
-              with regime switching and walk-forward optimisation. The emphasis was
-              on building a robust allocation framework rather than chasing headline
-              returns.
+              Worked with a 14-year, multi-currency FX dataset sampled at
+              5-second frequency. Research focused on understanding
+              microstructure patterns, factor exposures, and the statistical
+              properties of returns at high temporal resolution.
             </p>
-            <div className="flex gap-2 flex-wrap">
-              {["Hierarchical Risk Parity", "Regime Switching", "Walk-Forward", "Risk Decomposition"].map((tag) => (
-                <span key={tag} className="border border-zinc-700 px-3 py-1 text-xs text-zinc-400">
-                  {tag}
-                </span>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { label: "Time Span", value: "14 Years" },
+                { label: "Frequency", value: "5-Second" },
+                { label: "Asset Class", value: "FX Pairs" },
+                { label: "Focus", value: "Microstructure" },
+              ].map((m, i) => (
+                <div key={i}>
+                  <p className="font-mono-label text-[0.5rem] text-zinc-500 mb-1">
+                    {m.label}
+                  </p>
+                  <p className="text-white font-semibold text-sm">{m.value}</p>
+                </div>
               ))}
             </div>
           </div>
           <div className="glass-card shimmer-border p-8">
             <h3 className="text-lg font-semibold text-white mb-4">
-              Performance Summary
+              Research Methodology
             </h3>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { label: "Portfolio Return", value: "148%" },
-                { label: "Benchmark Return", value: "97.5%" },
-                { label: "Sharpe (Strategy)", value: "0.68" },
-                { label: "Sharpe (Benchmark)", value: "0.41" },
-              ].map((m, i) => (
-                <div key={i}>
-                  <p className="font-mono-label text-[0.5rem] text-zinc-500 mb-1">{m.label}</p>
-                  <p className="text-white font-semibold text-sm">{m.value}</p>
-                </div>
-              ))}
-            </div>
-            <p className="text-zinc-500 text-xs mt-4 leading-relaxed">
-              Regime-conditional performance decomposition used to understand
-              return sources — not surface-level optimisation.
+            <p className="text-zinc-400 text-sm leading-relaxed">
+              Analysis followed a strict walk-forward protocol — no look-ahead
+              bias, no in-sample optimisation leaked into evaluation. Factor
+              exposures were decomposed to understand systematic vs. idiosyncratic
+              return components. Every finding was stress-tested against
+              transaction cost assumptions and regime shifts.
             </p>
           </div>
         </div>
       </Section>
 
+      {/* Section 03: Statistical Arbitrage Research */}
+      <Section>
+        <p className="font-mono-label text-emerald-500/60 mb-4">
+          03 — Statistical Arbitrage
+        </p>
+        <h2 className="font-serif-display text-3xl md:text-5xl text-white mb-4">
+          Cross-Currency Factor Strategy
+        </h2>
+        <p className="text-emerald-500/60 font-mono-label text-[0.6rem] mb-8">
+          IISc Podium Recognition
+        </p>
+        <div className="glass-card shimmer-border p-8 max-w-3xl mb-8">
+          <p className="text-zinc-400 leading-relaxed mb-6">
+            Constructed and validated a market-neutral strategy for the FX
+            market. The approach isolates residual signals after removing
+            dominant factor exposures, then applies systematic rules to trade
+            across currency pairs. All results validated on out-of-sample data
+            using walk-forward protocols.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-6">
+            {[
+              { label: "Construction", value: "Market-Neutral" },
+              { label: "Validation", value: "Walk-Forward OOS" },
+              { label: "Recognition", value: "IISc Podium" },
+            ].map((m, i) => (
+              <div key={i} className="text-center">
+                <p className="text-white font-semibold text-sm">{m.value}</p>
+                <p className="font-mono-label text-[0.5rem] text-zinc-500 mt-1">
+                  {m.label}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="text-zinc-500 text-xs leading-relaxed italic">
+            Emphasis on understanding why the strategy works structurally — not
+            just that it produces favourable backtested numbers. Detailed
+            methodology available upon request.
+          </p>
+        </div>
+        <div className="flex gap-2 flex-wrap">
+          {[
+            "Factor Decomposition",
+            "Market-Neutral",
+            "Walk-Forward Validation",
+            "Risk Management",
+          ].map((tag) => (
+            <span
+              key={tag}
+              className="border border-zinc-700 px-3 py-1 text-xs text-zinc-400"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </Section>
+
       {/* Contact */}
       <Section className="pb-32">
-        <p className="font-mono-label text-emerald-500/60 mb-4">04 — Contact</p>
+        <p className="font-mono-label text-emerald-500/60 mb-4">
+          04 — Contact
+        </p>
         <h2 className="font-serif-display text-3xl md:text-5xl text-white mb-8">
           Connect
         </h2>
         <div className="max-w-lg">
           <p className="text-zinc-400 leading-relaxed mb-8">
-            Open to discussing quantitative research, market analysis,
-            and analytical problem-solving.
+            Open to discussing quantitative research, market analysis, and
+            analytical problem-solving.
           </p>
           <div className="space-y-3">
             {[
-              { label: "Email", value: "dhruvagrawal479@gmail.com", href: "mailto:dhruvagrawal479@gmail.com" },
-              { label: "LinkedIn", value: "linkedin.com/in/dhruva02", href: "https://linkedin.com/in/dhruva02" },
-              { label: "GitHub", value: "github.com/Dhruvacodes", href: "https://github.com/Dhruvacodes" },
+              {
+                label: "Email",
+                value: "dhruvagrawal479@gmail.com",
+                href: "mailto:dhruvagrawal479@gmail.com",
+              },
+              {
+                label: "LinkedIn",
+                value: "linkedin.com/in/dhruva02",
+                href: "https://linkedin.com/in/dhruva02",
+              },
+              {
+                label: "GitHub",
+                value: "github.com/Dhruvacodes",
+                href: "https://github.com/Dhruvacodes",
+              },
               { label: "Location", value: "Bengaluru, India", href: null },
             ].map((link, i) => (
               <div key={i} className="flex items-center gap-4">
-                <span className="font-mono-label text-zinc-600 w-20">{link.label}</span>
+                <span className="font-mono-label text-zinc-600 w-20">
+                  {link.label}
+                </span>
                 {link.href ? (
                   <a
                     href={link.href}
-                    target={link.href.startsWith("mailto") ? undefined : "_blank"}
-                    rel={link.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+                    target={
+                      link.href.startsWith("mailto") ? undefined : "_blank"
+                    }
+                    rel={
+                      link.href.startsWith("mailto")
+                        ? undefined
+                        : "noopener noreferrer"
+                    }
                     className="emerald-link text-sm text-zinc-300 cursor-pointer"
                   >
                     {link.value}

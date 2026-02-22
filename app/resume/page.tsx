@@ -14,7 +14,7 @@ export default function ResumePage() {
           <div>
             <h1 className="font-serif-display text-4xl mb-2">Dhruv Agrawal</h1>
             <p className="text-zinc-500 text-sm">
-              Technology & Finance Enthusiast
+              Technology &amp; Finance Focused Analyst
             </p>
           </div>
           <a
@@ -43,11 +43,12 @@ export default function ResumePage() {
       <section className="max-w-3xl mx-auto px-6 py-8">
         <h2 className="font-mono-label text-zinc-400 mb-4 text-xs">Summary</h2>
         <p className="text-zinc-700 leading-relaxed">
-          Computer and Communication Engineering student at Manipal Institute of
-          Technology with strong foundations in statistical learning, systems thinking,
-          and quantitative modeling. Research experience spanning AI perception systems,
-          FX statistical arbitrage, and agent-based economic simulation. Interested in
-          applying analytical rigour to high-impact strategic and business challenges.
+          Analytical problem-solver with a deep interest in technology-driven
+          systems and capital markets. Currently studying Computer and Communication
+          Engineering at Manipal Institute of Technology. Research experience spans
+          quantitative finance, AI perception systems, and simulation-based modeling.
+          Interested in applying structured, cross-domain thinking to high-impact
+          strategic and business challenges.
         </p>
       </section>
 
@@ -105,11 +106,10 @@ export default function ResumePage() {
               company: "Team RoboManipal",
               period: "2024 – Present",
               points: [
-                "Built AI perception and prescriptive decision system for autonomous robotics",
-                "Integrated instance segmentation, 3D spatial tracking, and multi-sensor fusion",
-                "Designed deterministic firmware migration framework for cross-architecture microcontroller porting",
-                "Represented team at World Robotics Championship",
+                "Developed end-to-end AI perception and decision system for autonomous robotics",
+                "Designed deterministic firmware migration framework for cross-architecture porting",
                 "Trained 50+ team members in ML and Edge AI workflows",
+                "Represented team at the World Robotics Championship",
               ],
             },
             {
@@ -117,10 +117,10 @@ export default function ResumePage() {
               company: "Finova — Finance Club, MIT Manipal",
               period: "2024 – Present",
               points: [
-                "Built FX statistical arbitrage strategy on 14-year, 5-second frequency dataset",
+                "Conducted independent research across statistical arbitrage, risk modeling, and portfolio construction",
                 "Received IISc podium recognition for FX arbitrage research",
-                "Developed hybrid Bitcoin crash forecasting system (EGARCH + LPPL + Attention LSTM)",
-                "Constructed cross-asset portfolio using Hierarchical Risk Parity with regime switching",
+                "Developed multi-signal crash forecasting model for cryptocurrency markets",
+                "Built cross-asset allocation framework with regime-aware methodology",
               ],
             },
             {
@@ -155,28 +155,32 @@ export default function ResumePage() {
 
       {/* Projects */}
       <section className="max-w-3xl mx-auto px-6 py-8 border-t border-zinc-100">
-        <h2 className="font-mono-label text-zinc-400 mb-6 text-xs">Projects</h2>
+        <h2 className="font-mono-label text-zinc-400 mb-6 text-xs">Selected Projects</h2>
         <div className="space-y-8">
           {[
             {
-              title: "FX Statistical Arbitrage Strategy",
-              desc: "Market-neutral FX strategy with factor decomposition removing USD exposure. Residual momentum trading on 14-year dataset at 5-second frequency. Net Sharpe 1.99 (1 bp cost), max drawdown −13.6%, profitable 12/14 years. Walk-forward backtesting.",
+              title: "FX Statistical Arbitrage Research",
+              desc: "Market-neutral cross-currency strategy validated on a 14-year high-frequency dataset. Walk-forward out-of-sample evaluation. IISc podium recognition.",
             },
             {
-              title: "Hybrid Bitcoin Crash Forecasting",
-              desc: "EGARCH volatility modeling, LPPL bubble diagnostics, sentiment signals, and attention-based LSTM for crash prediction. Early warning up to 26 days, ROC AUC 0.97. Rolling-window cross-validation.",
+              title: "Hybrid Crash Forecasting Model",
+              desc: "Multi-signal risk modeling system for cryptocurrency markets combining volatility analysis, bubble diagnostics, and sequence-based deep learning. Temporally-consistent validation.",
             },
             {
-              title: "Cross-Asset Portfolio Optimisation",
-              desc: "Hierarchical Risk Parity with regime switching and walk-forward optimisation. 148% return vs 97.5% benchmark. Sharpe improvement 0.41 → 0.68. Regime-conditional performance decomposition.",
+              title: "Cross-Asset Portfolio Construction",
+              desc: "Regime-aware allocation framework using hierarchical risk methods and walk-forward optimisation. Focus on robustness over headline returns.",
             },
             {
               title: "Post-AGI Digital Economy Simulation",
-              desc: "Agent-based modeling framework with tokenised reputation systems and synthetic labour markets. Reduced simulated wealth concentration by 34% through policy intervention protocols.",
+              desc: "Agent-based framework modeling autonomous economic agents in tokenised economies. Explored policy interventions for wealth distribution dynamics.",
             },
             {
               title: "AI Perception Pipeline (RoboManipal)",
-              desc: "End-to-end AI perception system integrating instance segmentation, 3D spatial tracking, and multi-sensor fusion for autonomous robotics competition.",
+              desc: "End-to-end perception system integrating real-time object understanding, spatial awareness, and multi-sensor fusion for autonomous robotics.",
+            },
+            {
+              title: "Firmware Migration Framework",
+              desc: "Deterministic cross-architecture porting system for embedded microcontrollers, emphasising reproducibility and automated validation.",
             },
           ].map((proj, i) => (
             <div key={i}>
@@ -198,11 +202,11 @@ export default function ResumePage() {
             },
             {
               category: "Quantitative Methods",
-              skills: "Statistical Arbitrage, EGARCH, LPPL, Risk Parity, Walk-Forward Validation",
+              skills: "Statistical Arbitrage, Risk Modeling, Walk-Forward Validation, Portfolio Construction",
             },
             {
               category: "AI & ML",
-              skills: "Instance Segmentation, Attention Mechanisms, LSTM, Sensor Fusion, Edge Deployment",
+              skills: "Computer Vision, Sequence Modeling, Sensor Fusion, Edge Deployment",
             },
             {
               category: "Tools & Platforms",

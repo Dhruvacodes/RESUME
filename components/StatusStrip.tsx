@@ -8,7 +8,7 @@ export default function StatusStrip() {
   const getStatusText = () => {
     switch (activeWorld) {
       case "systems":
-        return "SYSTEMS — Infrastructure & Architecture";
+        return "SYSTEMS — Technology & Research";
       case "markets":
         return "MARKETS — Quantitative Finance & Trading";
       default:
