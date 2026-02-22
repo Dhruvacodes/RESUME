@@ -59,10 +59,19 @@ export default function MarketsWorld() {
             <br />
             Market
             <br />
-            <span className="text-markets-accent">Dynamics</span>
+            <span
+              style={{
+                background: "linear-gradient(120deg, #CFCFCF, #8F8F8F)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Dynamics
+            </span>
           </h1>
-          <div className="mt-12 w-24 h-[1px] bg-emerald-500/30" />
-          <p className="mt-6 text-lg text-zinc-400 max-w-lg leading-relaxed">
+          <div className="mt-8 w-24 h-[1px] bg-emerald-500/30" />
+          <p className="mt-4 text-lg text-zinc-400 max-w-lg leading-relaxed">
             Research across risk modeling, portfolio construction, and
             statistical inference in financial markets — grounded in analytical
             rigour, walk-forward validation, and an emphasis on understanding

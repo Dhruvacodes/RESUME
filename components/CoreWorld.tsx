@@ -62,33 +62,96 @@ function ExpandablePanel({
 
 /* ─── CoreWorld ─────────────────────────────────────────────────── */
 export default function CoreWorld({ navigateToWorld }: CoreWorldProps) {
+  const nameText = "Dhruv Agrawal";
+
   return (
     <div
       className="relative min-h-screen flex flex-col items-center px-6 py-24"
-      style={{ background: "var(--core-bg)", color: "#18181B" }}
+      style={{
+        background: `
+          linear-gradient(130deg, #F5F3EE 0%, #F5F3EE 45%, #111111 75%, #000000 100%)
+        `,
+        backgroundBlendMode: "overlay",
+        color: "#18181B",
+      }}
     >
       {/* ── Hero ── */}
-      <motion.div
-        className="text-center max-w-3xl mt-8"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <p className="font-mono-label text-zinc-400 mb-8">Portfolio</p>
-        <h1 className="font-serif-display text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight mb-6">
-          Dhruv Agrawal
-        </h1>
-        <p className="font-mono-label text-zinc-500 mb-8 text-[0.65rem]">
+      <div className="text-center max-w-4xl mt-8">
+        {/* Name — letter-by-letter animation with gold gradient */}
+        <div className="overflow-hidden mb-8">
+          <h1
+            className="flex flex-wrap justify-center"
+            style={{
+              fontSize: "clamp(3rem, 11vw, 13vw)",
+              fontFamily: "'Inter', system-ui, sans-serif",
+              fontWeight: 700,
+              letterSpacing: "-0.05em",
+              lineHeight: 0.9,
+            }}
+          >
+            {nameText.split("").map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ y: "100%", opacity: 0 }}
+                animate={{ y: "0%", opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  delay: 0.3 + i * 0.04,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                style={{
+                  display: "inline-block",
+                  background: "linear-gradient(120deg, #C6A85E, #E6D3A3)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </h1>
+        </div>
+
+        {/* Subtitle */}
+        <motion.p
+          className="font-mono-label"
+          style={{
+            fontSize: "20px",
+            color: "#525252",
+            marginTop: "32px",
+            letterSpacing: "0.1em",
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+        >
           Technology × Finance
-        </p>
-        <div className="w-16 h-[1px] bg-zinc-300 mx-auto mb-8" />
-        <p className="text-zinc-500 text-lg max-w-xl mx-auto leading-relaxed">
+        </motion.p>
+
+        {/* Divider */}
+        <motion.div
+          className="w-16 h-[1px] bg-zinc-400/40 mx-auto"
+          style={{ marginTop: "48px" }}
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        />
+
+        {/* Paragraph */}
+        <motion.p
+          className="text-lg max-w-xl mx-auto leading-relaxed mt-8"
+          style={{ color: "#737373" }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
+        >
           Analytical problem-solver with a deep interest in technology-driven
           systems and capital markets. I study how complex systems behave under
           stress, how models fail in production, and where structured thinking
           creates the most leverage.
-        </p>
-      </motion.div>
+        </motion.p>
+      </div>
 
       {/* ── Expandable Panels ── */}
       <div className="mt-16 w-full max-w-2xl space-y-3">
@@ -207,7 +270,8 @@ export default function CoreWorld({ navigateToWorld }: CoreWorldProps) {
 
       {/* ── Contact ── */}
       <motion.div
-        className="mt-12 flex flex-wrap justify-center gap-6 text-[0.6rem] font-mono-label text-zinc-400"
+        className="mt-12 flex flex-wrap justify-center gap-6 text-[0.6rem] font-mono-label"
+        style={{ color: "#737373" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.6 }}
         transition={{ duration: 0.6, delay: 1.4 }}

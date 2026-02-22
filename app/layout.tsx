@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Analytics from "@/components/Analytics";
+import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://dhruvagrawal.app";
@@ -86,6 +87,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
+        <CustomCursor />
         {children}
         <Analytics />
       </body>

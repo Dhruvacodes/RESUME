@@ -35,11 +35,11 @@ function Section({
   );
 }
 
-/* ─── Section Title with gold accent bar ────────────────────────── */
+/* ─── Section Title with neutral accent bar ─────────────────────── */
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-start gap-4 mb-8">
-      <div className="w-[3px] h-10 mt-1 flex-shrink-0 rounded-full systems-gold-bar" />
+      <div className="w-[3px] h-10 mt-1 flex-shrink-0 rounded-full bg-zinc-400" />
       <h2 className="font-serif-display text-3xl md:text-5xl leading-tight text-zinc-900">
         {children}
       </h2>
@@ -69,13 +69,7 @@ export default function SystemsWorld() {
           <p className="font-mono-label text-zinc-500 mb-6">Systems</p>
           <h1
             className="font-serif-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] tracking-tight"
-            style={{
-              background:
-                "linear-gradient(90deg, #C0C0C0, #D4AF37, #C0C0C0)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
+            style={{ color: "#000000" }}
           >
             Systems Architecture
             <br />
@@ -129,6 +123,33 @@ export default function SystemsWorld() {
           </p>
         </div>
       </section>
+
+      {/* ═══ SYSTEMS MARQUEE ═══ */}
+      <div className="relative overflow-hidden py-3 border-y border-zinc-300/50 group">
+        <motion.div
+          className="flex gap-8 whitespace-nowrap"
+          animate={{ x: [0, -2400] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        >
+          {Array.from({ length: 3 }).flatMap((_, r) =>
+            [
+              "DISTRIBUTED ARCHITECTURE",
+              "EMBEDDED SYSTEMS",
+              "AUTONOMOUS AGENTS",
+              "PERFORMANCE ENGINEERING",
+              "SYSTEM ABSTRACTION",
+            ].map((term, i) => (
+              <span
+                key={`${r}-${i}`}
+                className="font-mono-label text-[0.55rem] text-zinc-400 flex-shrink-0"
+                style={{ letterSpacing: "0.1em" }}
+              >
+                {term} —
+              </span>
+            ))
+          )}
+        </motion.div>
+      </div>
 
       {/* ═══ ARCHITECTURE & DESIGN PRINCIPLES ═══ */}
       <Section>
