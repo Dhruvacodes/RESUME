@@ -46,16 +46,13 @@ export default function Home() {
 
   return (
     <main className="relative">
-      <IntroOverlay />
-      {introCompleted && (
-        <>
-          <StatusStrip />
-          <AxisContainer />
-          <ScrollProgress />
-          <CursorManager />
-          <KonamiListener />
-        </>
-      )}
+      {!introCompleted && <IntroOverlay />}
+
+      <StatusStrip />
+      <AxisContainer />
+      <ScrollProgress />
+      <CursorManager />
+      <KonamiListener />
     </main>
   );
 }
