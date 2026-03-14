@@ -22,12 +22,5 @@
       ]
     }
   ],
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.dhruvagrawal.app" }],
-      "destination": "https://dhruvagrawal.app/:path*",
-      "permanent": true
-    }
-  ]
+  "redirects": []
 }
