@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import GlowBackground from "./GlowBackground";
 import TickerRibbon from "./TickerRibbon";
 
@@ -21,13 +20,11 @@ function Section({
   children: React.ReactNode;
   className?: string;
 }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
   return (
     <motion.section
-      ref={ref}
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
       variants={sectionVariants}
       className={`relative px-6 md:px-16 lg:px-24 py-20 ${className}`}
     >
