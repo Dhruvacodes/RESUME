@@ -124,6 +124,79 @@ export default function AxisContainer() {
     return;
   }, [isMobile, introCompleted]);
 
+  // First-visit horizontal hint animation
+  useEffect(() => {
+    if (isMobile || !introCompleted) return;
+
+    try {
+      if (localStorage.getItem("axis_hint_seen")) return;
+    } catch {
+      return;
+    }
+
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    let cancelled = false;
+
+    const cancel = () => {
+      if (cancelled) return;
+      cancelled = true;
+      timers.forEach(clearTimeout);
+      targetX.current = -100;
+      try {
+        localStorage.setItem("axis_hint_seen", "1");
+      } catch {}
+    };
+
+    const cancelEvents = ["wheel", "mousedown", "touchstart", "keydown"];
+    cancelEvents.forEach((evt) =>
+      window.addEventListener(evt, cancel, { once: true, passive: true })
+    );
+
+    // Convert 120px to vw for consistent visual distance
+    const peekVw = (120 / window.innerWidth) * 100;
+
+    // After 800ms delay, peek toward Tech (Systems) by shifting right
+    timers.push(
+      setTimeout(() => {
+        if (cancelled) return;
+        targetX.current = -100 + peekVw;
+      }, 800)
+    );
+
+    // At 1500ms, peek toward Finance (Markets) by shifting left
+    timers.push(
+      setTimeout(() => {
+        if (cancelled) return;
+        targetX.current = -100 - peekVw;
+      }, 1500)
+    );
+
+    // At 2200ms, return to center
+    timers.push(
+      setTimeout(() => {
+        if (cancelled) return;
+        targetX.current = -100;
+      }, 2200)
+    );
+
+    // Mark as seen after animation settles
+    timers.push(
+      setTimeout(() => {
+        if (cancelled) return;
+        try {
+          localStorage.setItem("axis_hint_seen", "1");
+        } catch {}
+      }, 2800)
+    );
+
+    return () => {
+      cancel();
+      cancelEvents.forEach((evt) =>
+        window.removeEventListener(evt, cancel)
+      );
+    };
+  }, [isMobile, introCompleted]);
+
   // Navigate to a specific world
   const navigateToWorld = useCallback(
     (world: "systems" | "core" | "markets") => {
