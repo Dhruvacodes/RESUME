@@ -138,7 +138,7 @@ export default function CoreWorld({ navigateToWorld }: CoreWorldProps) {
                 Manipal Institute of Technology, Manipal
               </p>
               <p className="text-zinc-500 text-xs">
-                B.Tech — Computer and Communication Engineering · 2023 – Present
+                B.Tech — Computer and Communication Engineering · 2024 – Present
               </p>
             </div>
             <div>
