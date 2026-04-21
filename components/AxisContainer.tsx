@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useCallback, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { usePortfolioStore } from "@/lib/store";
 import SystemsWorld from "./SystemsWorld";
 import CoreWorld from "./CoreWorld";
@@ -12,6 +13,7 @@ export default function AxisContainer() {
   const innerRef = useRef<HTMLDivElement>(null);
   const { activeWorld, setActiveWorld, introCompleted, isMobile } = usePortfolioStore();
   const [horizontalProgress, setHorizontalProgress] = useState(0.5);
+  const [axisHintActive, setAxisHintActive] = useState(false);
   const isDragging = useRef(false);
   const dragStart = useRef(0);
   const scrollStart = useRef(0);
@@ -124,76 +126,91 @@ export default function AxisContainer() {
     return;
   }, [isMobile, introCompleted]);
 
-  // First-visit horizontal hint animation
+  // Opening horizontal hint animation
   useEffect(() => {
     if (isMobile || !introCompleted) return;
-
-    try {
-      if (localStorage.getItem("axis_hint_seen")) return;
-    } catch {
-      return;
-    }
 
     const timers: ReturnType<typeof setTimeout>[] = [];
     let cancelled = false;
 
-    const cancel = () => {
+    const dismissHint = (resetToCenter = true) => {
       if (cancelled) return;
       cancelled = true;
       timers.forEach(clearTimeout);
-      targetX.current = -100;
-      try {
-        localStorage.setItem("axis_hint_seen", "1");
-      } catch {}
+      setAxisHintActive(false);
+      if (resetToCenter) {
+        targetX.current = -100;
+      }
     };
 
-    const cancelEvents = ["wheel", "mousedown", "touchstart", "keydown"];
-    cancelEvents.forEach((evt) =>
-      window.addEventListener(evt, cancel, { once: true, passive: true })
+    const handleUserNavigationStart = () => dismissHint(false);
+    const handleKeyboardStart = () => dismissHint(true);
+
+    window.addEventListener("wheel", handleUserNavigationStart, {
+      once: true,
+      passive: true,
+    });
+    window.addEventListener("mousedown", handleUserNavigationStart, {
+      once: true,
+      passive: true,
+    });
+    window.addEventListener("touchstart", handleUserNavigationStart, {
+      once: true,
+      passive: true,
+    });
+    window.addEventListener("keydown", handleKeyboardStart, {
+      once: true,
+      passive: true,
+    });
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const peekVw = prefersReducedMotion
+      ? 0
+      : Math.min(18, Math.max(12, (190 / window.innerWidth) * 100));
+
+    timers.push(
+      setTimeout(() => {
+        if (cancelled) return;
+        setAxisHintActive(true);
+      }, 350)
     );
 
-    // Convert 120px to vw for consistent visual distance
-    const peekVw = (120 / window.innerWidth) * 100;
-
-    // After 800ms delay, peek toward Tech (Systems) by shifting right
     timers.push(
       setTimeout(() => {
         if (cancelled) return;
         targetX.current = -100 + peekVw;
-      }, 800)
+      }, 700)
     );
 
-    // At 1500ms, peek toward Finance (Markets) by shifting left
     timers.push(
       setTimeout(() => {
         if (cancelled) return;
         targetX.current = -100 - peekVw;
-      }, 1500)
+      }, 1550)
     );
 
-    // At 2200ms, return to center
     timers.push(
       setTimeout(() => {
         if (cancelled) return;
         targetX.current = -100;
-      }, 2200)
+      }, 2450)
     );
 
-    // Mark as seen after animation settles
     timers.push(
       setTimeout(() => {
         if (cancelled) return;
-        try {
-          localStorage.setItem("axis_hint_seen", "1");
-        } catch {}
-      }, 2800)
+        setAxisHintActive(false);
+      }, 3600)
     );
 
     return () => {
-      cancel();
-      cancelEvents.forEach((evt) =>
-        window.removeEventListener(evt, cancel)
-      );
+      dismissHint();
+      window.removeEventListener("wheel", handleUserNavigationStart);
+      window.removeEventListener("mousedown", handleUserNavigationStart);
+      window.removeEventListener("touchstart", handleUserNavigationStart);
+      window.removeEventListener("keydown", handleKeyboardStart);
     };
   }, [isMobile, introCompleted]);
 
@@ -242,6 +259,42 @@ export default function AxisContainer() {
       style={{ cursor: isDragging.current ? "grabbing" : "grab" }}
     >
       <WorldTransition progress={horizontalProgress} />
+      <AnimatePresence>
+        {axisHintActive && (
+          <motion.div
+            className="pointer-events-none fixed inset-y-0 left-0 right-0 z-[140] hidden lg:flex items-center justify-between px-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <motion.div
+              className="flex items-center gap-3 rounded border border-zinc-300/70 bg-[#F5F3EE]/85 px-4 py-3 text-zinc-700 shadow-[0_12px_40px_rgba(24,24,27,0.08)] backdrop-blur-md"
+              initial={{ x: -28, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -18, opacity: 0 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="text-lg" aria-hidden="true">
+                &larr;
+              </span>
+              <span className="font-mono-label text-[0.58rem]">Systems</span>
+            </motion.div>
+            <motion.div
+              className="flex items-center gap-3 rounded border border-zinc-700/50 bg-zinc-950/85 px-4 py-3 text-zinc-100 shadow-[0_12px_40px_rgba(0,0,0,0.22)] backdrop-blur-md"
+              initial={{ x: 28, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: 18, opacity: 0 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="font-mono-label text-[0.58rem]">Markets</span>
+              <span className="text-lg" aria-hidden="true">
+                &rarr;
+              </span>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div
         ref={innerRef}
         className="axis-horizontal flex h-screen"
