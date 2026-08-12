@@ -1681,8 +1681,8 @@ button {
 .circuit-nav {
   position: fixed;
   top: 50%;
-  left: 16px;
-  transform: translateY(-50%) scale(0.85);
+  left: 8px;
+  transform: translateY(-50%) scale(0.75);
   transform-origin: left center;
   height: 400px;
   width: 160px;
@@ -1806,7 +1806,7 @@ button {
   position: fixed;
   top: 0;
   right: 16px;
-  transform: scale(0.85);
+  transform: scale(0.75);
   transform-origin: right center;
   height: 100vh;
   width: 120px; /* Give it some width for the data block */
@@ -1836,10 +1836,10 @@ button {
 }
 
 .telemetry-bar__data {
-  margin-bottom: 64px;
+  margin-bottom: 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 1px;
