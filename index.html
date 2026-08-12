@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dhruv Agrawal — Technology × Finance</title>
+  <meta name="description" content="Dhruv Agrawal — analytical problem-solver working at the intersection of embedded systems, autonomous robotics, and quantitative finance." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══ PANTHER GRID — Geometric energy tessellation ═══ -->
+  <canvas id="panther-grid" aria-hidden="true"></canvas>
+
+  <!-- ═══ NAVIGATION — Frosted Nav Bar ═══ -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        <span class="nav__monogram">DA</span>
+        <span class="nav__wordmark">Dhruv Agrawal</span>
+      </a>
+      <div class="nav__links">
+        <a href="#projects" class="nav__link">Work</a>
+        <a href="#about" class="nav__link">About</a>
+        <a href="#vibe" class="nav__link">Now</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; margin-left: auto;">
+        <a href="resume.pdf" download class="btn-filled nav-desktop-cta">
+          Resume <span style="color: var(--color-steel); font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.8px; margin-left: 4px;">PDF</span>
+        </a>
+        <a href="mailto:dhruvagrawal479@gmail.com" class="btn-filled nav-desktop-cta" style="border-color: rgba(247,249,250,0.3);">
+          Contact
+        </a>
+      </div>
+      <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══ MOBILE MENU ═══ -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#projects" class="mobile-menu__link">Work</a>
+    <a href="#about" class="mobile-menu__link">About</a>
+    <a href="#vibe" class="mobile-menu__link">Now</a>
+    <a href="resume.pdf" download class="btn-filled" style="margin-top: 24px;">Resume</a>
+  </div>
+
+  <!-- ═══ HERO — Boarding Pass ═══ -->
+  <section class="hero" id="hero">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <div class="hero__badge-wrapper reveal">
+          <span class="pill-badge">
+            <span style="color: var(--color-signal-violet); font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;">technology</span>
+            <span style="color: var(--color-graphite);">×</span>
+            <span style="color: var(--color-signal-violet); font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase;">finance</span>
+          </span>
+        </div>
+        <h1 class="hero__title reveal reveal--delay-1">
+          <span class="hero__title-serif">Dhruv</span>
+          <span class="hero__title-sans">Agrawal</span>
+        </h1>
+        <p class="hero__subtitle reveal reveal--delay-2">
+          Analytical problem-solver with a deep interest in technology-driven systems and capital markets. I study how complex systems behave under stress, how models fail in production, and where structured thinking creates the most leverage.
+        </p>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;" class="reveal reveal--delay-3">
+          <a href="#projects" class="btn-pill">View Work →</a>
+          <a href="mailto:dhruvagrawal479@gmail.com" class="btn-pill" style="background: transparent; color: var(--color-ash);">
+            dhruvagrawal479@gmail.com
+          </a>
+        </div>
+      </div>
+
+      <!-- Boarding Pass Card wrapping the 3D Cube -->
+      <div class="reveal reveal--delay-2">
+        <div class="volatility-card">
+          <div class="volatility-card__header">
+            <div class="volatility-card__label">
+              <svg class="volatility-card__label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+              Volatility Surface
+            </div>
+          </div>
+          <div class="volatility-card__route">
+            <span>MODEL</span>
+            <span style="color: var(--color-ash);">STOCHASTIC</span>
+          </div>
+
+          <!-- 3D Surface Canvas -->
+          <div class="hero__visual" style="min-height: 240px; display: flex; align-items: center; justify-content: center; position: relative;">
+            <canvas id="volatilityCanvas" width="300" height="240" style="position: absolute; z-index: 1;"></canvas>
+            <div style="width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, var(--color-signal-violet) 0%, transparent 70%); opacity: 0.1; filter: blur(30px); position: absolute; animation: pulse-glow 4s infinite ease-in-out; pointer-events: none;"></div>
+          </div>
+
+          <div class="volatility-card__actions" style="margin-top: var(--spacing-24);">
+            <a href="#projects" class="btn-pill" style="font-size: 14px; padding: 12px 24px;">Explore Projects</a>
+            <a href="resume.pdf" download class="btn-pill" style="font-size: 14px; padding: 12px 24px;">Download Resume</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROJECTS ═══ -->
+  <section class="section" id="projects">
+    <div class="section__inner">
+      <div class="section-header reveal">
+        <p class="section-header__label">Selected Work</p>
+        <h2 class="section-header__title">Projects</h2>
+      </div>
+
+      <!-- 1. Simulated Economy -->
+      <article class="project reveal">
+        <div class="project__info">
+          <p class="project__eyebrow">Simulation & Agent-Based Systems</p>
+          <h3 class="project__title">Post-AGI Digital Economy Simulation</h3>
+          <p class="project__desc">
+            Built a large-scale agent-based simulation modeling autonomous economic actors in post-AGI tokenised economies. The framework introduces reputation currencies and tokenized attention markets as coordination primitives, then explores policy interventions for wealth distribution dynamics.
+          </p>
+          <div class="terminal-block">
+            <div class="terminal-line">
+              <span class="status-dot"></span>
+              <span><span class="code-accent">result:</span> −34% wealth concentration under targeted policy</span>
+            </div>
+            <div class="terminal-line">
+              <span class="status-dot"></span>
+              <span><span class="code-accent">stack:</span> Agent-Based Modeling, Simulation Design, Tokenomics</span>
+            </div>
+          </div>
+        </div>
+        <div class="project__visual">
+          <img src="assets/images/simulated-economy.png" alt="Economy simulation" loading="lazy" />
+        </div>
+      </article>
+
+      <!-- 2. Robot Vision -->
+      <article class="project project--reverse reveal">
+        <div class="project__info">
+          <p class="project__eyebrow">Autonomous Robotics & Edge AI</p>
+          <h3 class="project__title">AI Perception for Agricultural Robotics</h3>
+          <p class="project__desc">
+            Developed the full AI perception stack for an autonomous agricultural robot — instance segmentation for individual plant identification, active viewpoint optimisation for multi-angle canopy observation, 3D spatial tracking using fused camera and LiDAR data, and plant-level risk prediction for targeted intervention. Real-time inference on edge hardware.
+          </p>
+          <div class="terminal-block">
+            <div class="terminal-line">
+              <span class="status-dot"></span>
+              <span><span class="code-accent">mentorship:</span> 50+ teammates trained in ML & Edge AI</span>
+            </div>
+            <div class="terminal-line">
+              <span class="status-dot"></span>
+              <span><span class="code-accent">achievement:</span> FRC (Farm Robotics Championship), USA 2026</span>
+            </div>
+            <div class="terminal-line">
+              <span class="status-dot"></span>
+              <span><span class="code-accent">stack:</span> Python, Instance Segmentation, LiDAR, Edge AI, Multi-Sensor Fusion</span>
+            </div>
+          </div>
+        </div>
+        <div class="project__visual">
+          <img src="assets/images/robot-vision.png" alt="Robot vision" loading="lazy" />
+        </div>
+      </article>
+
+      <!-- 3. Currency Trading — VIOLET BLOOM CARD -->
+      <article class="project project--violet-bloom reveal">
+        <div class="project__info">
+          <p class="project__eyebrow">Statistical Arbitrage</p>
+          <h3 class="project__title">Cross-Currency FX Strategy</h3>
+          <p class="project__desc">
+            Built and validated a market-neutral statistical arbitrage strategy on a 14-year, multi-currency FX dataset sampled at 5-second frequency. Isolates residual mispricings after removing dominant USD exposure, then applies systematic mean-reversion rules across currency pairs. All evaluation followed strict walk-forward, out-of-sample protocols.
+          </p>
+          <div class="terminal-block">
+            <div class="terminal-line">
+              <span class="status-dot"></span>
+              <span><span class="code-accent">sharpe:</span> 3.81 gross / 1.99 net (1bp)</span>
+            </div>
+            <div class="terminal-line">
+              <span class="status-dot"></span>
+              <span><span class="code-accent">drawdown:</span> Max −13.6% · Profitable 12/14 years</span>
+            </div>
+            <div class="terminal-line">
+              <span class="status-dot"></span>
+              <span><span class="code-accent">recognition:</span> IISc Podium</span>
+            </div>
+          </div>
+        </div>
+        <div class="project__visual">
+          <img src="assets/images/currency-trading.png" alt="Currency trading" loading="lazy" />
+        </div>
+      </article>
+
+      <!-- 4. Firmware Translator -->
+      <article class="project reveal">
+        <div class="project__info">
+          <p class="project__eyebrow">Embedded Systems & Firmware</p>
+          <h3 class="project__title">Deterministic Firmware Migration Framework</h3>
+          <p class="project__desc">
+            Designed a reproducible framework for cross-architecture firmware migration using semantic hardware abstraction layers that decouple application logic from platform-specific peripherals. Automates code translation across microcontroller families, validates correctness through simulation-based testing, and produces deterministic builds with full traceability.
+          </p>
+          <div class="terminal-block">
+            <div class="terminal-line">
+              <span class="status-dot"></span>
+              <span><span class="code-accent">approach:</span> Semantic HAL + automated code translation</span>
+            </div>
+            <div class="terminal-line">
+              <span class="status-dot"></span>
+              <span><span class="code-accent">pipeline:</span> Simulation → HIL verification → deterministic build</span>
+            </div>
+            <div class="terminal-line">
+              <span class="status-dot"></span>
+              <span><span class="code-accent">stack:</span> C/C++, Microcontrollers, Build Systems, Toolchain Integration</span>
+            </div>
+          </div>
+        </div>
+        <div class="project__visual">
+          <img src="assets/images/firmware-translator.png" alt="Firmware translator" loading="lazy" />
+        </div>
+      </article>
+
+      <!-- 5. Bitcoin Predictor -->
+      <article class="project reveal">
+        <div class="project__info">
+          <p class="project__eyebrow">Risk Modeling & Early Warning</p>
+          <h3 class="project__title">Hybrid Crash Forecasting</h3>
+          <p class="project__desc">
+            Developed a multi-signal crash forecasting system for Bitcoin, fusing EGARCH-based volatility regime detection, LPPL bubble diagnostics, sentiment-derived features, and LSTM sequence modeling into a unified early-warning framework. Generates probabilistic crash alerts validated through rolling-window cross-validation with strict temporal separation.
+          </p>
+          <div class="terminal-block">
+            <div class="terminal-line">
+              <span class="status-dot"></span>
+              <span><span class="code-accent">roc_auc:</span> 0.97 · Precision 89%</span>
+            </div>
+            <div class="terminal-line">
+              <span class="status-dot"></span>
+              <span><span class="code-accent">lead_time:</span> 26-day average warning</span>
+            </div>
+          </div>
+        </div>
+        <div class="project__visual">
+          <img src="assets/images/bitcoin-predictor.png" alt="Bitcoin predictor" loading="lazy" />
+        </div>
+      </article>
+
+      <!-- 6. Portfolio Rebalance -->
+      <article class="project reveal">
+        <div class="project__info">
+          <p class="project__eyebrow">Portfolio Construction</p>
+          <h3 class="project__title">Cross-Asset Portfolio Optimization</h3>
+          <p class="project__desc">
+            Built a regime-aware, cross-asset allocation framework combining Hierarchical Risk Parity with dynamic regime-switching filters. Rebalances allocations based on detected market regimes — risk-on, risk-off, and transitional — validated through strict walk-forward protocols on multi-year data spanning equities, fixed income, and commodities.
+          </p>
+          <div class="terminal-block">
+            <div class="terminal-line">
+              <span class="status-dot"></span>
+              <span><span class="code-accent">return:</span> 148% vs 97.5% benchmark</span>
+            </div>
+            <div class="terminal-line">
+              <span class="status-dot"></span>
+              <span><span class="code-accent">sharpe:</span> 0.41 → 0.68 · HRP + Regime Switch</span>
+            </div>
+          </div>
+        </div>
+        <div class="project__visual">
+          <img src="assets/images/portfolio-rebalance.png" alt="Portfolio rebalancing" loading="lazy" />
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ═══ STATS ═══ -->
+  <section class="section" style="padding-top: 0; padding-bottom: 0;">
+    <div class="section__inner">
+      <div class="hairline"></div>
+      <div class="stats">
+        <div class="stat reveal">
+          <div class="stat__number" data-target="6" data-suffix="+">0</div>
+          <div class="stat__label">Flagship Projects</div>
+        </div>
+        <div class="stat reveal reveal--delay-1">
+          <div class="stat__number" data-target="50" data-suffix="+">0</div>
+          <div class="stat__label">Teammates Mentored</div>
+        </div>
+        <div class="stat reveal reveal--delay-2">
+          <div class="stat__number" data-target="89" data-suffix="%">0</div>
+          <div class="stat__label">Prediction Accuracy</div>
+        </div>
+        <div class="stat reveal reveal--delay-3">
+          <div class="stat__number" data-target="148" data-suffix="%">0</div>
+          <div class="stat__label">Portfolio Return</div>
+        </div>
+      </div>
+      <div class="hairline" style="margin-top: 0;"></div>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section class="section" id="about">
+    <div class="section__inner">
+      <div class="section-header reveal">
+        <p class="section-header__label">Background</p>
+        <h2 class="section-header__title">About</h2>
+      </div>
+      <div class="about-grid">
+        <div class="reveal">
+          <p class="about__bio">
+            <strong>Analytical problem-solver</strong> with a deep interest in technology-driven systems and capital markets. I study how complex systems behave under stress, how models fail in production, and where structured thinking creates the most leverage.
+          </p>
+          <p class="about__bio">
+            The strongest analytical positions are held by people who can move fluidly between domains — not generalists who know a little about everything, but <strong>integrators</strong> who understand the deep structure of multiple fields well enough to see where they rhyme.
+          </p>
+
+          <!-- Expandable Panels -->
+          <div style="margin-top: var(--spacing-32);">
+            <div class="expandable" id="panel-education">
+              <button class="expandable__trigger" onclick="togglePanel('panel-education')">
+                <span>Education</span>
+                <span class="expandable__icon">+</span>
+              </button>
+              <div class="expandable__body">
+                <div class="expandable__content">
+                  <strong>Manipal Institute of Technology, Manipal</strong><br/>
+                  B.Tech — Computer and Communication Engineering · 2024 – Present
+                  <br/><br/>
+                  <strong>Bhavan's Bhagwandas Purohit Vidya Mandir, Nagpur</strong><br/>
+                  Class XII — 93.6% · Class X — 98.4%
+                </div>
+              </div>
+            </div>
+
+            <div class="expandable" id="panel-research">
+              <button class="expandable__trigger" onclick="togglePanel('panel-research')">
+                <span>Research Interests</span>
+                <span class="expandable__icon">+</span>
+              </button>
+              <div class="expandable__body">
+                <div class="expandable__content">
+                  <strong>Quantitative Finance</strong> — statistical arbitrage, risk modeling, walk-forward validation<br/><br/>
+                  <strong>AI & Perception Systems</strong> — real-time inference, sensor fusion, edge deployment<br/><br/>
+                  <strong>Simulation & Modeling</strong> — agent-based economic frameworks, policy-driven synthetic markets<br/><br/>
+                  <strong>Systems Thinking</strong> — cross-domain analytical frameworks for complex adaptive systems
+                </div>
+              </div>
+            </div>
+
+            <div class="expandable" id="panel-leadership">
+              <button class="expandable__trigger" onclick="togglePanel('panel-leadership')">
+                <span>Leadership & Initiatives</span>
+                <span class="expandable__icon">+</span>
+              </button>
+              <div class="expandable__body">
+                <div class="expandable__content">
+                  <strong>AI Researcher — Team RoboManipal</strong><br/>
+                  Led AI perception development; trained 50+ members in ML and Edge AI workflows. Represented India at FRC (Farm Robotics Championship), USA 2026.
+                  <br/><br/>
+                  <strong>Vice President — Finova, MIT Manipal</strong><br/>
+                  Conducted independent research across FX arbitrage, crash forecasting, and portfolio construction. IISc podium recognition.
+                  <br/><br/>
+                  <strong>Member — E-Cell, MIT Manipal</strong><br/>
+                  Engaged with startup ecosystem and innovation-driven initiatives.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline -->
+          <div class="timeline">
+            <div class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__content">
+                <div class="timeline__year">2026</div>
+                <div class="timeline__text">FRC (Farm Robotics Championship), USA — Team RoboManipal, representing India</div>
+              </div>
+            </div>
+            <div class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__content">
+                <div class="timeline__year">2025</div>
+                <div class="timeline__text">FX trading strategy recognized at IISc Bangalore · Vice President, Finova</div>
+              </div>
+            </div>
+            <div class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__content">
+                <div class="timeline__year">2024 – Present</div>
+                <div class="timeline__text">B.Tech — Computer and Communication Engineering</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal--delay-1">
+          <p class="about__skills-label">Languages & Frameworks</p>
+          <div class="about__skills" style="margin-bottom: var(--spacing-32);">
+            <span class="skill-badge">Python</span>
+            <span class="skill-badge">C</span>
+            <span class="skill-badge">C++</span>
+            <span class="skill-badge">PyTorch</span>
+            <span class="skill-badge">OpenCV</span>
+            <span class="skill-badge">ROS</span>
+            <span class="skill-badge">NumPy</span>
+            <span class="skill-badge">Docker</span>
+          </div>
+          <p class="about__skills-label">Domains</p>
+          <div class="about__skills" style="margin-bottom: var(--spacing-32);">
+            <span class="skill-badge">Embedded Systems</span>
+            <span class="skill-badge">Computer Vision</span>
+            <span class="skill-badge">Quant Finance</span>
+            <span class="skill-badge">Robotics</span>
+            <span class="skill-badge">Machine Learning</span>
+            <span class="skill-badge">Multi-Agent Systems</span>
+          </div>
+          <p class="about__skills-label">Tools & Platforms</p>
+          <div class="about__skills">
+            <span class="skill-badge">Git</span>
+            <span class="skill-badge">Linux</span>
+            <span class="skill-badge">Jupyter</span>
+            <span class="skill-badge">RTOS</span>
+            <span class="skill-badge">Simulators</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CURRENT VIBE ═══ -->
+  <section class="section" id="vibe">
+    <div class="section__inner">
+      <div class="section-header reveal">
+        <p class="section-header__label">What I'm Into Right Now</p>
+        <h2 class="section-header__title">Currently</h2>
+      </div>
+      <div class="vibe">
+        <a href="https://open.spotify.com/track/1P6X7V8n7w5l8dYwK4PqXY" target="_blank" rel="noopener" class="vibe__player reveal" style="text-decoration: none; color: inherit;">
+          <div class="vibe__icon-container">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="3"/>
+              <line x1="12" y1="2" x2="12" y2="4"/>
+              <line x1="12" y1="20" x2="12" y2="22"/>
+            </svg>
+          </div>
+          <div class="vibe__track-info">
+            <div class="vibe__now-label">
+              <div class="equalizer">
+                <div class="equalizer__bar"></div>
+                <div class="equalizer__bar"></div>
+                <div class="equalizer__bar"></div>
+                <div class="equalizer__bar"></div>
+                <div class="equalizer__bar"></div>
+              </div>
+              <span style="margin-left: 8px;">Now Playing</span>
+            </div>
+            <div class="vibe__track-title">Oh Yeah</div>
+            <div class="vibe__track-artist">Steve Lacy</div>
+          </div>
+        </a>
+        <div class="vibe__mood reveal reveal--delay-1">
+          <div class="vibe__mood-item">
+            <span class="vibe__mood-label">current mood</span>
+            <span class="vibe__mood-value" id="rotating-mood">Building something ambitious</span>
+          </div>
+          <div class="vibe__mood-item">
+            <span class="vibe__mood-label">currently reading</span>
+            <span class="vibe__mood-value"><em>"Advances in Financial Machine Learning"</em> — Marcos López de Prado</span>
+          </div>
+          <div class="vibe__mood-item">
+            <span class="vibe__mood-label">quote of the month</span>
+            <span class="vibe__mood-value"><em>"The best way to predict the future is to invent it."</em> — Alan Kay</span>
+          </div>
+          <div class="vibe__mood-item">
+            <span class="vibe__mood-label">obsessing over</span>
+            <span class="vibe__mood-value">Agent-based economic simulations & embedded ML</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER — Coordinate Footer ═══ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__left">
+        <span class="footer__icon">+</span>
+        <div>
+          <div class="footer__label">Dhruv Agrawal</div>
+          <div class="footer__label-sub">Technology × Finance</div>
+        </div>
+        <div class="footer__links">
+          <a href="mailto:dhruvagrawal479@gmail.com" class="footer__link">Email</a>
+          <a href="https://linkedin.com/in/dhruva02" target="_blank" rel="noopener" class="footer__link">LinkedIn</a>
+          <a href="https://github.com/Dhruvacodes" target="_blank" rel="noopener" class="footer__link">GitHub</a>
+          <a href="resume.pdf" class="footer__link">Resume</a>
+        </div>
+      </div>
+      <div class="footer__right">
+        <span class="footer__coordinate" id="footer-coordinate">13.3525° N, 74.7868° E</span>
+        <span class="footer__heart">♥</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
