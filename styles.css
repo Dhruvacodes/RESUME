@@ -482,12 +482,32 @@ button {
 
 /* ── Boarding Pass Card ─────────────────────────────────────────── */
 .volatility-card {
-  background: rgba(237, 195, 196, 0.05);
+  background: rgba(9, 9, 9, 0.95);
   border: 1px solid rgba(247, 249, 250, 0.15);
   border-radius: var(--radius-cards);
   padding: var(--spacing-40);
   position: relative;
   overflow: hidden;
+}
+
+.volatility-card__scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-signal-violet), transparent);
+  box-shadow: 0 0 12px var(--color-signal-violet), 0 0 30px var(--color-signal-violet);
+  animation: scanline-sweep 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes scanline-sweep {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
 }
 
 .volatility-card__header {
