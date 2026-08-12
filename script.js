@@ -400,6 +400,28 @@ function togglePanel(id) {
 (function() {
   const canvas = document.getElementById('volatilityCanvas');
   if (!canvas) return;
+  
+  // Model Cycler integration
+  let currentModelIndex = 0;
+  const modelCycler = document.getElementById('modelCycler');
+  if (modelCycler) {
+    const models = ['STOCHASTIC', 'BLACK-SCHOLES', 'MEAN-REVERSION', 'MONTE CARLO', 'REGIME SWITCH', 'GARCH'];
+    setInterval(() => {
+      currentModelIndex = (currentModelIndex + 1) % models.length;
+      modelCycler.style.transition = 'opacity 0.3s, transform 0.3s';
+      modelCycler.style.opacity = '0';
+      modelCycler.style.transform = 'translateY(-5px)';
+      setTimeout(() => {
+        modelCycler.textContent = models[currentModelIndex];
+        modelCycler.style.transform = 'translateY(5px)';
+        requestAnimationFrame(() => {
+          modelCycler.style.opacity = '1';
+          modelCycler.style.transform = 'translateY(0)';
+        });
+      }, 300);
+    }, 4000); // synced to 4s scanline sweep
+  }
+
   const ctx = canvas.getContext('2d');
   let width = canvas.width;
   let height = canvas.height;
@@ -449,11 +471,34 @@ function togglePanel(id) {
     const angleY = time * 0.0003 + (mouseX - width/2) * 0.002;
     const angleX = 0.4 + (mouseY - height/2) * 0.002;
 
-    // Update Y values based on a complex wave function
+    // Update Y values based on current model function
     points.forEach(p => {
       const dist = Math.sqrt(p.x * p.x + p.z * p.z);
-      // Create a rippling surface effect
-      p.y = Math.sin(dist * 0.08 - time * 0.002) * 12 + Math.cos(p.x * 0.05 + time * 0.001) * 8;
+      
+      let targetY = 0;
+      switch(currentModelIndex) {
+        case 0: // STOCHASTIC (rippling wave)
+          targetY = Math.sin(dist * 0.08 - time * 0.002) * 12 + Math.cos(p.x * 0.05 + time * 0.001) * 8;
+          break;
+        case 1: // BLACK-SCHOLES (implied vol smile / parabola)
+          targetY = (Math.pow(p.x * 0.1, 2) + Math.pow(p.z * 0.1, 2)) * 1.2 - 10 + Math.sin(time * 0.002) * 3;
+          break;
+        case 2: // MEAN-REVERSION (springing to 0)
+          targetY = Math.sin(p.x * 0.2 + time * 0.004) * Math.cos(p.z * 0.2 - time * 0.003) * 15 * Math.exp(-dist * 0.02);
+          break;
+        case 3: // MONTE CARLO (noisy random paths)
+          targetY = (Math.sin(p.x * 1.3 + time*0.005) + Math.cos(p.z * 1.7 + time*0.004)) * 10;
+          break;
+        case 4: // REGIME SWITCH (blocky jumps)
+          targetY = Math.sign(Math.sin(p.x * 0.1 - time * 0.001) + Math.cos(p.z * 0.1 + time * 0.002)) * 12;
+          break;
+        case 5: // GARCH (volatility clustering on edges)
+          targetY = (dist * 0.15) * Math.sin(p.x * 0.4 + time * 0.006) * Math.cos(p.z * 0.4 - time * 0.005);
+          break;
+      }
+      
+      // Smooth interpolation between shapes so it doesn't snap instantly
+      p.y += (targetY - p.y) * 0.05;
     });
 
     ctx.lineWidth = 1;
