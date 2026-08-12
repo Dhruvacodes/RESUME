@@ -9,6 +9,23 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,400;1,700&display=swap');
 
+/* ── Custom Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 12px;
+  background: #090909;
+}
+::-webkit-scrollbar-track {
+  background: rgba(247, 249, 250, 0.02);
+  border-left: 1px solid rgba(247, 249, 250, 0.05);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-signal-violet);
+  border: 3px solid #090909;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-lavender-mist);
+}
 /* ── Design Tokens ──────────────────────────────────────────────── */
 :root {
   /* Colors — dope.security palette */
@@ -954,7 +971,8 @@ button {
   border-radius: var(--radius-cards);
   overflow: hidden;
   margin-bottom: var(--spacing-12);
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+  background: rgba(9, 9, 9, 0.85);
 }
 .expandable:hover { border-color: rgba(247, 249, 250, 0.15); }
 
@@ -1062,13 +1080,22 @@ button {
   padding: var(--spacing-24);
   border: 1px solid rgba(247, 249, 250, 0.1);
   border-radius: var(--radius-cards);
-  background: rgba(247, 249, 250, 0.02);
+  background: rgba(9, 9, 9, 0.85);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
 }
 
+.vibe__player-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-24);
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+}
+
 .vibe__player:hover {
-  background: rgba(247, 249, 250, 0.04);
+  background: rgba(9, 9, 9, 0.95);
   border-color: rgba(247, 249, 250, 0.2);
 }
 
@@ -1145,6 +1172,53 @@ button {
 .vibe__track-artist {
   font-size: var(--text-body-sm);
   color: var(--color-steel);
+}
+
+.vibe__controls {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+  color: var(--color-steel);
+}
+
+.vibe__control-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.vibe__control-btn:hover {
+  color: var(--color-almost-white);
+  background: rgba(247, 249, 250, 0.05);
+}
+
+.vibe__control-btn--play {
+  width: 44px;
+  height: 44px;
+  background: var(--color-almost-white);
+  color: var(--color-background);
+}
+
+.vibe__control-btn--play:hover {
+  background: #ffffff;
+  color: var(--color-background);
+  transform: scale(1.05);
+}
+
+.vibe__control-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.vibe__control-btn--play svg {
+  width: 24px;
+  height: 24px;
 }
 
 .vibe__mood {
@@ -1406,4 +1480,381 @@ button {
 }
 @keyframes draw-core {
   to { stroke-dashoffset: -200; }
+}
+
+/* ── Circuit Sidebar Navigation ──────────────────────────────────── */
+.circuit-nav {
+  position: fixed;
+  top: 50%;
+  left: 32px;
+  transform: translateY(-50%);
+  height: 400px;
+  width: 160px;
+  z-index: 100;
+  display: flex;
+  pointer-events: none; /* Let clicks pass through except on nodes */
+}
+
+@media (max-width: 1200px) {
+  .circuit-nav {
+    display: none;
+  }
+}
+
+.circuit-nav__track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 100%;
+}
+
+.circuit-nav__particle {
+  transition: cy 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.circuit-nav__glow-line {
+  transition: d 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.circuit-nav__nodes {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.circuit-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 32px; /* Fix height to easily align SVG */
+  cursor: pointer;
+  pointer-events: auto;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.circuit-node:hover {
+  opacity: 1;
+}
+
+.circuit-node__dot {
+  width: 12px;
+  height: 12px;
+  background: var(--color-near-black);
+  border: 1px solid rgba(247, 249, 250, 0.2);
+  border-radius: 50%;
+  margin-left: 24px; /* Center is at 30px */
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+/* Hover State - Purple Edge Glow */
+.circuit-node:hover .circuit-node__dot {
+  border-color: rgba(175, 80, 255, 0.6);
+  box-shadow: 0 0 10px rgba(175, 80, 255, 0.3);
+}
+
+/* Active State - Electric Purple Pulse */
+.circuit-node.active {
+  opacity: 1;
+}
+
+.circuit-node.active .circuit-node__dot {
+  border-color: var(--color-signal-violet);
+  background: rgba(175, 80, 255, 0.1);
+  box-shadow: 0 0 15px var(--color-signal-violet);
+}
+
+.circuit-node__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 1.5px;
+  color: var(--color-steel);
+  transition: color 0.3s ease;
+  margin-left: 24px;
+}
+
+.circuit-node.active .circuit-node__label {
+  color: var(--color-signal-violet);
+}
+
+.circuit-node:hover .circuit-node__label {
+  color: var(--color-almost-white);
+}
+
+/* Connecting Horizontal lines */
+.circuit-node::before {
+  content: '';
+  position: absolute;
+  left: 36px;
+  top: 50%;
+  width: 16px;
+  height: 1px;
+  .section-header__title {
+    font-size: clamp(28px, 8vw, 48px);
+  }
+
+  .footer__inner {
+    flex-direction: column;
+    gap: var(--spacing-24);
+    text-align: center;
+  }
+
+  .footer__left,
+  .footer__right {
+    justify-content: center;
+  }
+
+  .footer__links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: 44px;
+  }
+
+  .volatility-card__actions {
+    flex-direction: column;
+  }
+
+  .stats { grid-template-columns: 1fr; }
+  .stat::after { display: none !important; }
+  .stat {
+    border-bottom: 1px solid rgba(247, 249, 250, 0.06);
+    padding: var(--spacing-24);
+  }
+  .stat:last-child { border-bottom: none; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { transform: scale(1); opacity: 0.15; }
+  50% { transform: scale(1.1); opacity: 0.25; }
+}
+
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+.volatility-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 50%;
+  background: linear-gradient(to bottom, transparent, rgba(175, 80, 255, 0.1) 90%, rgba(175, 80, 255, 0.5) 100%);
+  animation: scanline 3s linear infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.hero__hologram {
+  animation: rotate-3d-holo 20s infinite linear;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 0 12px var(--color-signal-violet));
+}
+@keyframes rotate-3d-holo {
+  0% { transform: rotateY(0deg) rotateX(15deg); }
+  50% { transform: rotateY(180deg) rotateX(-15deg); }
+  100% { transform: rotateY(360deg) rotateX(15deg); }
+}
+.hero__hologram-core {
+  animation: pulse-core 2s infinite alternate, draw-core 8s infinite linear;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+}
+@keyframes pulse-core {
+  from { filter: drop-shadow(0 0 4px var(--color-signal-violet)); stroke-width: 1; }
+  to { filter: drop-shadow(0 0 15px var(--color-signal-violet)); stroke-width: 2; }
+}
+@keyframes draw-core {
+  to { stroke-dashoffset: -200; }
+}
+
+/* ── Circuit Sidebar Navigation ──────────────────────────────────── */
+.circuit-nav {
+  position: fixed;
+  top: 50%;
+  left: 32px;
+  transform: translateY(-50%);
+  height: 400px;
+  width: 160px;
+  z-index: 100;
+  display: flex;
+  pointer-events: none; /* Let clicks pass through except on nodes */
+}
+
+@media (max-width: 1200px) {
+  .circuit-nav {
+    display: none;
+  }
+}
+
+.circuit-nav__track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 100%;
+}
+
+.circuit-nav__particle {
+  transition: cy 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.circuit-nav__glow-line {
+  transition: d 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.circuit-nav__nodes {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.circuit-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 32px; /* Fix height to easily align SVG */
+  cursor: pointer;
+  pointer-events: auto;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.circuit-node:hover {
+  opacity: 1;
+}
+
+.circuit-node__dot {
+  width: 12px;
+  height: 12px;
+  background: var(--color-near-black);
+  border: 1px solid rgba(247, 249, 250, 0.2);
+  border-radius: 50%;
+  margin-left: 24px; /* Center is at 30px */
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+/* Hover State - Purple Edge Glow */
+.circuit-node:hover .circuit-node__dot {
+  border-color: rgba(175, 80, 255, 0.6);
+  box-shadow: 0 0 10px rgba(175, 80, 255, 0.3);
+}
+
+/* Active State - Electric Purple Pulse */
+.circuit-node.active {
+  opacity: 1;
+}
+
+.circuit-node.active .circuit-node__dot {
+  border-color: var(--color-signal-violet);
+  background: rgba(175, 80, 255, 0.1);
+  box-shadow: 0 0 15px var(--color-signal-violet);
+}
+
+.circuit-node__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 1.5px;
+  color: var(--color-steel);
+  transition: color 0.3s ease;
+  margin-left: 24px;
+}
+
+.circuit-node.active .circuit-node__label {
+  color: var(--color-signal-violet);
+}
+
+.circuit-node:hover .circuit-node__label {
+  color: var(--color-almost-white);
+}
+
+/* Connecting Horizontal lines */
+.circuit-node::before {
+  content: '';
+  position: absolute;
+  left: 36px;
+  top: 50%;
+  width: 16px;
+  height: 1px;
+  background: rgba(247, 249, 250, 0.1);
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+.circuit-node.active::before {
+  background: var(--color-signal-violet);
+}
+
+/* ── Telemetry Right Sidebar ─────────────────────────────────────── */
+.telemetry-bar {
+  position: fixed;
+  top: 0;
+  right: 32px;
+  height: 100vh;
+  width: 120px; /* Give it some width for the data block */
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+@media (max-width: 1200px) {
+  .telemetry-bar {
+    display: none;
+  }
+}
+
+.telemetry-bar__text {
+  margin-top: 120px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: rgba(247, 249, 250, 0.15);
+  white-space: nowrap;
+}
+
+.telemetry-bar__data {
+  margin-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.telemetry-bar__line {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: right;
+}
+
+.telemetry-bar__label {
+  color: var(--color-steel);
+  font-size: 8px;
+}
+
+.telemetry-bar__value {
+  color: var(--color-almost-white);
+  font-variant-numeric: tabular-nums;
 }

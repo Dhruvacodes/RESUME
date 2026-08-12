@@ -560,3 +560,118 @@ function togglePanel(id) {
 
   requestAnimationFrame(animate);
 })();
+
+// Vibe Player Controls Logic
+const playPauseBtn = document.getElementById('play-pause-btn');
+const playPauseIcon = document.getElementById('play-pause-icon');
+
+// Paths for toggle
+const pausePath = "M8 19c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2v10c0 1.1.9 2 2 2zm6-12v10c0 1.1.9 2 2 2s2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2z";
+const playPath = "M8 5v14l11-7z";
+let isPlaying = true; // defaults to pause icon
+
+if (playPauseBtn && playPauseIcon) {
+  playPauseBtn.addEventListener('click', () => {
+    isPlaying = !isPlaying;
+    playPauseIcon.setAttribute('d', isPlaying ? pausePath : playPath);
+  });
+}
+
+// ==========================================
+// Circuit Sidebar Navigation Logic
+// ==========================================
+const circuitNodes = document.querySelectorAll('.circuit-node');
+const circuitParticle = document.getElementById('circuit-particle');
+const circuitProgress = document.getElementById('circuit-progress');
+
+if (circuitNodes.length > 0 && circuitParticle && circuitProgress) {
+  // Map sections to nodes
+  const sections = Array.from(circuitNodes).map(node => {
+    return document.getElementById(node.getAttribute('data-target'));
+  });
+
+  // Calculate Y position for the particle based on the active node
+  function updateCircuit(activeIndex) {
+    // Update active class
+    circuitNodes.forEach((node, idx) => {
+      if (idx === activeIndex) {
+        node.classList.add('active');
+        // Get the node's vertical center relative to the container
+        // Node height is 32px, so center is offsetTop + 16
+        const targetY = node.offsetTop + 16;
+        
+        // Move particle
+        circuitParticle.setAttribute('cy', targetY);
+        
+        // Update glow line (starts at first node center = 16, ends at targetY)
+        const startY = circuitNodes[0].offsetTop + 16;
+        circuitProgress.setAttribute('d', `M 30 ${startY} L 30 ${targetY}`);
+      } else {
+        node.classList.remove('active');
+      }
+    });
+  }
+
+  // Smooth scroll on click
+  circuitNodes.forEach((node, index) => {
+    node.addEventListener('click', () => {
+      const targetSection = sections[index];
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Intersection Observer for scroll spy
+  const observerOptions = {
+    root: null,
+    rootMargin: '-50% 0px -50% 0px', // Trigger when section passes the middle of viewport
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const index = sections.indexOf(entry.target);
+        if (index !== -1) {
+          updateCircuit(index);
+        }
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(section => {
+    if (section) observer.observe(section);
+  });
+
+  // Initial update (wait for layout to settle)
+  setTimeout(() => updateCircuit(0), 100);
+}
+
+// ==========================================
+// Telemetry Right Sidebar Logic
+// ==========================================
+const timeEl = document.getElementById('telemetry-time');
+const memEl = document.getElementById('telemetry-mem');
+
+if (timeEl && memEl) {
+  function updateTelemetry() {
+    // UTC Time format: HH:MM:SS.mmm
+    const now = new Date();
+    const h = String(now.getUTCHours()).padStart(2, '0');
+    const m = String(now.getUTCMinutes()).padStart(2, '0');
+    const s = String(now.getUTCSeconds()).padStart(2, '0');
+    const ms = String(now.getUTCMilliseconds()).padStart(3, '0');
+    timeEl.textContent = `${h}:${m}:${s}.${ms}`;
+
+    // Randomize HEX for memory allocation simulation
+    // Only update memory sometimes so it doesn't flicker wildly
+    if (Math.random() > 0.6) {
+      const hex = Math.floor(Math.random() * 65535).toString(16).toUpperCase().padStart(4, '0');
+      memEl.textContent = `0x${hex}`;
+    }
+    
+    requestAnimationFrame(updateTelemetry);
+  }
+  updateTelemetry();
+}
