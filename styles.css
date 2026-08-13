@@ -759,7 +759,7 @@ button {
 
 /* ── Terminal Code Block ── */
 .terminal-block {
-  background: rgba(247, 249, 250, 0.03);
+  background: rgba(9, 9, 9, 0.85);
   border: 1px solid rgba(247, 249, 250, 0.08);
   border-radius: var(--radius-cards);
   padding: var(--spacing-24);
@@ -958,6 +958,7 @@ button {
   font-size: var(--text-caption);
   letter-spacing: var(--tracking-caption);
   color: var(--color-soft-white);
+  background: rgba(9, 9, 9, 0.85);
   transition: border-color var(--transition-fast), background var(--transition-fast);
 }
 .skill-badge:hover {
