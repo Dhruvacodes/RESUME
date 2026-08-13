@@ -1,4 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // ── Theme Toggle ──
+  const themeToggle = document.getElementById('theme-toggle');
+  const iconSun = document.getElementById('theme-icon-sun');
+  const iconMoon = document.getElementById('theme-icon-moon');
+  
+  // Check local storage (default to dark)
+  const currentTheme = localStorage.getItem('theme') || 'dark';
+  
+  function updateTheme(theme) {
+    if (theme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      document.body.setAttribute('data-theme', 'light'); // Set both for compatibility
+      iconSun.style.display = 'none';
+      iconMoon.style.display = 'block';
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      document.body.removeAttribute('data-theme');
+      iconSun.style.display = 'block';
+      iconMoon.style.display = 'none';
+    }
+  }
+
+  // Initial set
+  updateTheme(currentTheme);
+
+  if (themeToggle) {
+    themeToggle.onclick = function(e) {
+      e.preventDefault();
+      console.log('Theme toggle clicked');
+      const isLight = document.documentElement.hasAttribute('data-theme');
+      const newTheme = isLight ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
+      updateTheme(newTheme);
+    };
+  }
+
   // ── Navigation ──
   // The frosted nav bar is always visible with its translucent panel bg
   // No scroll-based border toggle needed — the ash border is permanent
