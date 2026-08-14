@@ -110,6 +110,34 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     requestAnimationFrame(step);
+  }  // ── Rotating Hero Text ──
+  const rotatingTexts = document.querySelectorAll('.js-rotating-text');
+  if (rotatingTexts.length > 0) {
+    const heroWords = [
+      'Technology',
+      'Finance',
+      'Consulting',
+      'Growth',
+      'Leadership'
+    ];
+    let heroIdx = 0;
+
+    setInterval(() => {
+      rotatingTexts.forEach(el => {
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(4px)';
+        el.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+      });
+
+      setTimeout(() => {
+        heroIdx = (heroIdx + 1) % heroWords.length;
+        rotatingTexts.forEach(el => {
+          el.textContent = heroWords[heroIdx];
+          el.style.opacity = 1;
+          el.style.transform = 'translateY(0)';
+        });
+      }, 400);
+    }, 2500);
   }
 
   // ── Rotating Mood Text ──
@@ -144,8 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const coordEl = document.getElementById('footer-coordinate');
   if (coordEl) {
     // Manipal, India coordinates with subtle drift
-    const baseLat = 13.3525;
-    const baseLng = 74.7868;
+    const baseLat = 13.345048;
+    const baseLng = 74.794182;
 
     function updateCoordinate() {
       // Tiny random drift to simulate live feel
